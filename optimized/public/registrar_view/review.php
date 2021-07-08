@@ -19,9 +19,6 @@ $requests = $statement->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <h1>PENDING REQUESTS</h1>
-<p>
-  <a href="create.php" class="btn btn-success">Add Request</a>
-</p>
 
 <form>
   <div class="input-group mb-3">
@@ -60,10 +57,7 @@ $requests = $statement->fetchAll(PDO::FETCH_ASSOC);
         <td><?php echo $request['requirements']?></td>
         <td><?php echo $request['remarks']?></td>
         <td>
-        <a href="update.php?document_id=<?php echo $document['document_id'] ?>"  class="btn btn-sm btn-outline-primary">Approve</a>
-        <form style="display: inline-block" method="post"  action="delete.php">
-          <input type="hidden" name="document_id" value="<?php echo $document['document_id'] ?>" />
-          <button type="submit" class="btn btn-sm btn-outline-danger">Reject</button>
+        <a href="view.php?request_id=<?php echo $request['request_id'] ?>"  class="btn btn-sm btn-outline-primary">View</a>
         </form>
         </td>
       </tr>
