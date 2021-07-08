@@ -1,0 +1,15 @@
+{
+    "name": "skye/sample",
+    "autoload": {
+        "psr-4": {
+            "app\\": "./app"
+        }
+    },
+    "authors": [
+        {
+            "name": "Skye",
+            "email": "skyetolones@gmail.com"
+        }
+    ],
+    "require": {}
+}
