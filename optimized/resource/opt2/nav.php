@@ -1,4 +1,8 @@
 <?php ?>
+<!-- This is the navigation bar for registrar_view -->
+
+
+
 <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
   <!-- Navbar content -->
   <a class="navbar-brand" href="../dashboard.php">Dashboard</a>

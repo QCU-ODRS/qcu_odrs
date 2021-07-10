@@ -1,7 +1,8 @@
 <?php
+//PDO database connection
+require_once "../../../resource/opt/database.php";
 
-require_once "../../opt/database.php";
-
+//search algorithm
 $search = $_GET['search'] ?? '';
 if($search) {
   $statement = $pdo->prepare('SELECT * FROM documents WHERE document_name LIKE :title ORDER BY document_id ASC');
@@ -11,19 +12,30 @@ if($search) {
 }
 $statement->execute();
 $documents = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+//check if fetching
 // echo '<pre>';
 // var_dump($documents);
 // echo '</pre>';
 ?>
 
-<?php include_once "../../opt/header.php"; ?>
-<?php include_once "../../opt/nav.php"; ?>
 
+
+<!-- refer header -->
+<?php include_once "../../../resource/opt/header.php"; ?>
+<!-- refer navigation bar -->
+<?php include_once "../../../resource/opt/nav.php"; ?>
+
+<!-- content -->
   <h1>DOCUMENTS</h1>
+
+<!-- add document button -->
 <p>
   <a href="create.php" class="btn btn-success">Add Document </a>
 </p>
 
+
+<!-- search field -->
 <form>
   <div class="input-group mb-3">
     <input type="text" class="form-control" placeholder="Search Documents" name="search" value="<?php echo $search?>">
@@ -31,6 +43,8 @@ $documents = $statement->fetchAll(PDO::FETCH_ASSOC);
       <button class="btn btn-outline-secondary" type="submit">Search</button>
     </div>
 </div>
+
+<!-- table view -->
 </form>
 <table class="table">
   <thead class="thead-dark">

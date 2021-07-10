@@ -1,5 +1,10 @@
 <?php
 
+// user click table row -> action: reject
+
+
+
+
 require_once "../../opt2/database.php";
 // echo '<pre>';
 // var_dump($_POST);

@@ -1,35 +1,44 @@
 <?php
-
+//PDO database connection
 require_once "../../opt/database.php";
 
+
+//check if the information is posting
 // echo '<pre>';
 // var_dump($_POST);
 // echo '</pre>';
 
+//errors array
 $errors = [];
-
+//empty variable placeholders
 $title ='';
 $requirements ='';
 
+//check if request method is post
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   require_once "../../opt/validate.php";
-
+//make sure errors array is empty
 if(empty($errors)){
-$statement = $pdo->prepare("INSERT INTO documents (document_name, requirements) VALUES (:title, :requirements)");
 
+//prepare query statement
+$statement = $pdo->prepare("INSERT INTO documents (document_name, requirements) VALUES (:title, :requirements)");
+//bind values to placeholders
 $statement->bindValue(':title', $title);
 $statement->bindValue(':requirements', $requirements);
 $statement->execute();
+//where to redirect
 header('Location: documents.php');
     }
 }
-
+//refer header
 include_once "../../opt/header.php";
+//refer navigation bar
 include_once "../../opt/nav.php"; 
 ?>
 
-
+<!-- content -->
   <h1>ADD DOCUMENT</h1>
+<!-- refer form -->
 <?php include_once "../../opt/form.php"?>
 
 

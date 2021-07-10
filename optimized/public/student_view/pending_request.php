@@ -1,7 +1,11 @@
 <?php
+//PDO database connection
     require_once "../../opt1/database.php";
+//refer header
     include_once "../../opt1/header.php";
+//refer navigation bar
     include_once "../../opt1/nav.php"; 
+//search algorithm
 $search = $_GET['search'] ?? '';
 if($search) {
   $statement = $pdo->prepare("SELECT document_request.request_date, student_info.student_number, student_info.full_name, student_info.course, student_info.year, documents.document_name, documents.requirements, document_request.remarks FROM document_request INNER JOIN student_info ON document_request.student_number = student_info.student_number JOIN documents ON document_request.document_id = documents.document_id WHERE (student_info.student_number LIKE :student_number OR student_info.full_name LIKE :full_name OR documents.document_name LIKE :document_name) AND document_request.request_status LIKE 'PENDING' ORDER BY document_request.request_number DESC");
@@ -13,16 +17,24 @@ if($search) {
 }
 $statement->execute();
 $requests = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+//check if the information is fetched
 // echo '<pre>';
 // var_dump($requests);
 // echo '</pre>';
 ?>
 
+
+
+<!-- content -->
 <h1>PENDING REQUESTS</h1>
+<!-- new request button -->
 <p>
   <a href="create.php" class="btn btn-success">Add Request</a>
 </p>
 
+
+<!-- search elements -->
 <form>
   <div class="input-group mb-3">
     <input type="text" class="form-control" placeholder="Search Pending Requests" name="search" value="<?php echo $search?>">
@@ -30,7 +42,7 @@ $requests = $statement->fetchAll(PDO::FETCH_ASSOC);
       <button class="btn btn-outline-secondary" type="submit">Search</button>
     </div>
 </div>
-
+<!-- table view -->
 </form>
 <table class="table">
   <thead class="table-dark">
@@ -47,6 +59,7 @@ $requests = $statement->fetchAll(PDO::FETCH_ASSOC);
     </tr>
   </thead>
   <tbody>
+  <!-- array from database to rows -->
   <?php foreach ($requests as $i => $request): ?>
       <tr>
         <th scope="row"><?php echo $i + 1 ?></th>

@@ -1,4 +1,8 @@
 <?php
+//showing request records
+
+
+
     require_once "../../opt2/database.php";
     include_once "../../opt2/header.php";
     include_once "../../opt2/nav.php"; 
