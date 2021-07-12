@@ -1,4 +1,8 @@
 <?php
+//a function that deletes a document
+
+
+
 //PDO database connection
 require_once "../../opt/database.php";
 

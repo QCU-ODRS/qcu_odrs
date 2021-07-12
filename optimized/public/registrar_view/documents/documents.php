@@ -1,4 +1,9 @@
 <?php
+//this is the view of listed documents
+
+
+
+
 //PDO database connection
 require_once "../../../resource/opt/database.php";
 

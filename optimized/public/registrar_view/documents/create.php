@@ -1,4 +1,7 @@
 <?php
+//this is where you create documents
+
+
 //PDO database connection
 require_once "../../opt/database.php";
 
