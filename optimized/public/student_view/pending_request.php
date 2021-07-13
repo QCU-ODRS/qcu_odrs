@@ -1,19 +1,19 @@
 <?php
 //PDO database connection
-    require_once "../../opt1/database.php";
+    require_once "../../resource/opt1/database.php";
 //refer header
-    include_once "../../opt1/header.php";
+    include_once "../../resource/opt1/header.php";
 //refer navigation bar
-    include_once "../../opt1/nav.php"; 
+    include_once "../../resource/opt1/nav.php"; 
 //search algorithm
 $search = $_GET['search'] ?? '';
 if($search) {
-  $statement = $pdo->prepare("SELECT document_request.request_date, student_info.student_number, student_info.full_name, student_info.course, student_info.year, documents.document_name, documents.requirements, document_request.remarks FROM document_request INNER JOIN student_info ON document_request.student_number = student_info.student_number JOIN documents ON document_request.document_id = documents.document_id WHERE (student_info.student_number LIKE :student_number OR student_info.full_name LIKE :full_name OR documents.document_name LIKE :document_name) AND document_request.request_status LIKE 'PENDING' ORDER BY document_request.request_number DESC");
+  $statement = $pdo->prepare("SELECT document_request.request_date, student_info.student_number, student_info.full_name, student_info.course, student_info.year_of_enrollment, documents.document_name, documents.requirements, document_request.remarks FROM document_request INNER JOIN student_info ON document_request.student_number = student_info.student_number JOIN documents ON document_request.document_id = documents.document_id WHERE (student_info.student_number LIKE :student_number OR student_info.full_name LIKE :full_name OR documents.document_name LIKE :document_name) AND document_request.request_status LIKE 'PENDING' ORDER BY document_request.request_number DESC");
   $statement->bindValue(':document_name', "%$search%");
   $statement->bindValue(':student_number', "%$search%");
   $statement->bindValue(':full_name', "%$search%");
 } else {
-  $statement = $pdo->prepare("SELECT document_request.request_date, student_info.student_number, student_info.full_name, student_info.course, student_info.year, documents.document_name, documents.requirements, document_request.remarks FROM document_request INNER JOIN student_info ON document_request.student_number = student_info.student_number JOIN documents ON document_request.document_id = documents.document_id WHERE document_request.request_status LIKE 'PENDING' ORDER BY document_request.request_number DESC");
+  $statement = $pdo->prepare("SELECT document_request.request_date, student_info.student_number, student_info.full_name, student_info.course, student_info.year_of_enrollment, documents.document_name, documents.requirements, document_request.remarks FROM document_request INNER JOIN student_info ON document_request.student_number = student_info.student_number JOIN documents ON document_request.document_id = documents.document_id WHERE document_request.request_status LIKE 'PENDING' ORDER BY document_request.request_number DESC");
 }
 $statement->execute();
 $requests = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -67,7 +67,7 @@ $requests = $statement->fetchAll(PDO::FETCH_ASSOC);
         <td><?php echo $request['student_number']?></td>
         <td><?php echo $request['full_name']?></td>
         <td><?php echo $request['course']?></td>
-        <td><?php echo $request['year']?></td>
+        <td><?php echo $request['year_of_enrollment']?></td>
         <td><?php echo $request['document_name']?></td>
         <td><?php echo $request['requirements']?></td>
         <td><?php echo $request['remarks']?></td>
