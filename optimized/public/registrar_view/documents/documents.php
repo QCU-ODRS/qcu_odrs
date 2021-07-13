@@ -52,7 +52,7 @@ $documents = $statement->fetchAll(PDO::FETCH_ASSOC);
 <!-- table view -->
 </form>
 <table class="table">
-  <thead class="thead-dark">
+  <thead class="table-dark">
     <tr>
       <th scope="col">#</th>
       <th scope="col">Title</th>

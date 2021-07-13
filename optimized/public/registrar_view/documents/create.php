@@ -3,7 +3,7 @@
 
 
 //PDO database connection
-require_once "../../opt/database.php";
+require_once "../../../resource/opt/database.php";
 
 
 //check if the information is posting
@@ -19,7 +19,7 @@ $requirements ='';
 
 //check if request method is post
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  require_once "../../opt/validate.php";
+  require_once "../../../resource/opt/validate.php";
 //make sure errors array is empty
 if(empty($errors)){
 
@@ -34,15 +34,15 @@ header('Location: documents.php');
     }
 }
 //refer header
-include_once "../../opt/header.php";
+include_once "../../../resource/opt/header.php";
 //refer navigation bar
-include_once "../../opt/nav.php"; 
+include_once "../../../resource/opt/nav.php"; 
 ?>
 
 <!-- content -->
   <h1>ADD DOCUMENT</h1>
 <!-- refer form -->
-<?php include_once "../../opt/form.php"?>
+<?php include_once "../../../resource/opt/form.php"?>
 
 
 

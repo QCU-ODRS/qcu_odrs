@@ -7,7 +7,7 @@
       <th scope="col"><button>Date</button></th>
       <th scope="col"><button>Student Number</button></th>
       <th scope="col"><button>Full Name</button></th>
-      <th scope="col"><select><option selected>Course/option></select</th>
+      <th scope="col"><select><option selected>Course</option></select</th>
       <th scope="col"><select><option selected>Year</option></select></th>
       <th scope="col"><select><option selected>Document Name</option></select></th>
     </tr>

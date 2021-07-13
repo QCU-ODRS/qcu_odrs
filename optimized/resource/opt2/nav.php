@@ -13,7 +13,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="../documents/documents.php">Document List</a>
+        <a class="nav-link" href="documents/documents.php">Document List</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="review.php">Review</a>
