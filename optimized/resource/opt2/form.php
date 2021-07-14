@@ -15,7 +15,7 @@
     </div>
     <label>Document Name</label>
     <select class="form-select" aria-label="Default select example" name="document_id">
-      <option selected>--Select One--</option>
+      <option disabled selected>--Select One--</option>
       <?php foreach ($rows as $row):?>
       <option value="<?php echo $row['document_id'] ?>"><?php echo $row['document_name'] ?></option>
       <?php endforeach; ?>
