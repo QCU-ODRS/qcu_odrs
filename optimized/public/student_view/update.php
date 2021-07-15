@@ -16,7 +16,7 @@ while ($row = mysqli_fetch_array($result)){
     $rows[] = $row;
 }
 
-require_once "../../opt1/database.php";
+require_once "../../resource/opt1/database.php";
 
 $id =$_GET['request_number'] ?? null;
 
