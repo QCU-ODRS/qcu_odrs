@@ -4,7 +4,7 @@
 
 
 //PDO database connection
-require_once "../../opt/database.php";
+require_once "../../../resource/opt/database.php";
 
 //check if data is posting
 // echo '<pre>';
@@ -35,7 +35,7 @@ $requirements =$document['requirements'];
 
 //check if request method is post
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    require_once "../../opt/validate.php";
+    require_once "../../../resource/opt/validate.php";
 //make sure errors is empty
 if(empty($errors)){
 //prepare query statement
@@ -51,13 +51,13 @@ header('Location: documents.php');
 }
 ?>
 <!-- refer header -->
-<?php include_once "../../opt/header.php"; ?>
+<?php include_once "../../../resource/opt/header.php"; ?>
 <!-- refer navigation bar -->
-<?php include_once "../../opt/nav.php"; ?>
+<?php include_once "../../../resource/opt/nav.php"; ?>
 <!-- content -->
 <h1>UPDATE DOCUMENT&nbsp;<b><?php echo $document['document_name'] ?></b></h1>
 <!-- refer form -->
-<?php include_once "../../opt/form.php"?>
+<?php include_once "../../../resource/opt/form.php"?>
 
 
 

@@ -6,7 +6,8 @@
                 </div>
             <?php endforeach?>
         </div>
-    <?php endif; ?>
+    <?php endif ?>
+
 <form action="" method="post">
     <label>Student Number</label>
     <div>

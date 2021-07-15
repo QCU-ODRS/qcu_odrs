@@ -15,7 +15,7 @@
     </div>
     <label>Document Name</label>
     <select class="form-select" aria-label="Default select example" name="document_id">
-      <option selected>--Select One--</option>
+      <option selected disabled>--Select One--</option>
       <?php
       // while ($row = mysqli_fetch_array($result)){
       //   unset($id,$name);
