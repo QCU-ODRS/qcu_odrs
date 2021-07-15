@@ -83,5 +83,10 @@ require_once "../../resource/opt1/nav.php";
     <br />
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
+  <script>
+    function changeValue(){
+      Document.getElementID();
+    }
+  </script>
   </body>
 </html>
