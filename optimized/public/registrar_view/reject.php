@@ -5,7 +5,7 @@
 
 
 
-require_once "../../opt2/database.php";
+require_once "../../resource/opt2/database.php";
 // echo '<pre>';
 // var_dump($_POST);
 // echo '</pre>';
