@@ -15,7 +15,7 @@ include_once "../../resource/opt/dashnav.php";
 </head>
     <body>
         <?php
-            require("../../resource/opt/table.php");
+            require("../../resource/opt/pendinglist_table.php");
         ?>
     </body>
 </html>
