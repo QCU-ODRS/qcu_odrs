@@ -1,3 +1,7 @@
+<?php
+    include_once "../../resource/opt/pendinglist_table.php";
+?>
+
 <table>
     <tr>
         <th>Request Number</th>
