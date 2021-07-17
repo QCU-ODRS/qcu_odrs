@@ -19,3 +19,7 @@ table {
     box-shadow: 4px #000000;
 }
 
+tr {
+    margin-left: 25px;
+    padding: 10px;
+}
