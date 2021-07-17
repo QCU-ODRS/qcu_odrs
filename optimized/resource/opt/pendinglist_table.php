@@ -1,5 +1,5 @@
 <?php
-    include_once "../../resource/opt/pendinglist_table.php";
+    include_once "../resource/CssJs/tableview.css";
 ?>
 
 <table>
