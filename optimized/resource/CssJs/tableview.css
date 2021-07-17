@@ -13,6 +13,8 @@ nav:hover {
 }
 
 table {
+    position: absolute;
+    margin-left: 25px;
     padding: 10px;
     box-shadow: 4px #000000;
 }
