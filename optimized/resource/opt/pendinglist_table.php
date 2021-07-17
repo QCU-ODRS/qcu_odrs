@@ -1,7 +1,3 @@
-<?php
-    include_once "../resource/CssJs/tableview.css";
-?>
-
 <table>
     <tr>
         <th>Request Number</th>
