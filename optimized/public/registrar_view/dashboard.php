@@ -13,9 +13,9 @@ include_once "../../resource/opt/dashnav.php";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body>
-    <table>
-        
-    </table>
-</body>
+    <body>
+        <?php
+            require("../../resource/opt/table.php");
+        ?>
+    </body>
 </html>
