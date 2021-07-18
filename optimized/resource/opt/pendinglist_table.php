@@ -1,5 +1,5 @@
 <table>
-    <tr>
+    <tr class="bg-dark" style="color: white;">
         <th>Request Number</th>
         <th>Date Requested</th>
         <th>Requester's Name</th>
