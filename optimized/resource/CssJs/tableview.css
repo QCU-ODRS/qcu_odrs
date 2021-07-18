@@ -26,7 +26,7 @@ table {
     padding: 10px;
     box-shadow: 4px #000000;*/
     left: 40px;
-    top: 386px;
+    top: 286px;
     bottom: 200px;
     filter: drop-shadow(4px 4px 1px rgba(0, 0, 0, 0.25));
     background-color: #87CEEB;
@@ -42,17 +42,17 @@ hr {
     width: 1825px;
     height: 0px;
     left: 40px;
-    top: 340px;
+    top: 240px;
     border: 2px solid #000000;
     transform: rotate(0.06deg);
 }
 
-button.btn {
+button.btns {
     position: absolute;
     /* width: 585px; */
     height: 35px;
     left: 39px;
-    top: 305px;
+    top: 205px;
     filter: drop-shadow(4px 4px 2px rgba(0, 0, 0, 0.25));
     background-color: #87CEEB;
     text-align: center;
@@ -74,6 +74,10 @@ button.btn {
     margin-left: 507.5px;
 }
 
-.searchbar {
-    width: 1800px;
+input.searchbar {
+    width: 1750px;
+}
+
+.searchbtn {
+    margin-left: auto;
 }
