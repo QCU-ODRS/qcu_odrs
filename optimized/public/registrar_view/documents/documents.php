@@ -43,9 +43,9 @@ $documents = $statement->fetchAll(PDO::FETCH_ASSOC);
 <!-- search field -->
 <form>
   <div class="input-group mb-3">
-    <input type="text" class="form-control searchbar" placeholder="Search Documents" name="search" value="<?php echo $search?>">
+    <input type="text" class="searchbar form-control" placeholder="Search Documents" name="search" value="<?php echo $search?>">
     <div class="input-group-append">
-      <button class="btn btn-outline-secondary" type="submit">Search</button>
+      <button class="searchbtn btn btn-outline-secondary" type="submit">Search</button>
     </div>
 </div>
 
