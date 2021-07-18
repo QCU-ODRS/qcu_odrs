@@ -1,9 +1,9 @@
 <div class="container">
-    <button class="btn btn-primary showall" onclick="filterSelection('ShowAll')">Show All</button>
-    <button class="btn btn-primary rlist" onclick="filterSelection('RequestsList')"> Request List</button>
-    <button class="btn btn-primary plist" onclick="filterSelection('PendingList')">Pending List</button>
-    <button class="btn btn-primary iplist" onclick="filterSelection('In-ProcessList')">In-Process List</button>
-    <button class="btn btn-primary alist" onclick="filterSelection('ArchivedList')">Archived List</button>
+    <button class="btn btn-primary btns showall" onclick="filterSelection('ShowAll')">Show All</button>
+    <button class="btn btn-primary btns rlist" onclick="filterSelection('RequestsList')"> Request List</button>
+    <button class="btn btn-primary btns plist" onclick="filterSelection('PendingList')">Pending List</button>
+    <button class="btn btn-primary btns iplist" onclick="filterSelection('In-ProcessList')">In-Process List</button>
+    <button class="btn btn-primary btns alist" onclick="filterSelection('ArchivedList')">Archived List</button>
 </div>
 <div class="container">
     <div class="d-sm-flex">
