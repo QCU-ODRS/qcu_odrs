@@ -24,6 +24,9 @@ include_once "../../resource/opt/dashnav.php";
     <body>
         <?php
             require("../../resource/opt/tab_filter.php");
+        ?>
+        <hr>
+        <?php
             require("../../resource/opt/pendinglist_table.php");
         ?>
     </body>
