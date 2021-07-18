@@ -28,7 +28,7 @@ table {
     left: 40px;
     top: 386px;
     bottom: 200px;
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    filter: drop-shadow(4px 4px 1px rgba(0, 0, 0, 0.25));
     background-color: #87CEEB;
     text-align: center;
 }
@@ -45,4 +45,35 @@ hr {
     top: 340px;
     border: 2px solid #000000;
     transform: rotate(0.06deg);
+}
+
+button.btn {
+    position: absolute;
+    /* width: 585px; */
+    height: 35px;
+    left: 39px;
+    top: 305px;
+    filter: drop-shadow(4px 4px 2px rgba(0, 0, 0, 0.25));
+    background-color: #87CEEB;
+    text-align: center;
+}
+
+.rlist {
+    margin-left: 105px;
+}
+
+.plist {
+    margin-left: 232.5px;
+}
+
+.iplist {
+    margin-left: 362.5px;
+}
+
+.alist {
+    margin-left: 507.5px;
+}
+
+.searchbar {
+    width: 1800px;
 }
