@@ -28,7 +28,7 @@ table {
     left: 40px;
     top: 286px;
     bottom: 200px;
-    filter: drop-shadow(4px 4px 1px rgba(0, 0, 0, 0.25));
+    filter: drop-shadow(10px 10px 2px rgba(0, 0, 0, 0.25));
     background-color: #87CEEB;
     text-align: center;
 }
@@ -53,31 +53,37 @@ button.btns {
     height: 35px;
     left: 39px;
     top: 205px;
-    filter: drop-shadow(4px 4px 2px rgba(0, 0, 0, 0.25));
+    filter: drop-shadow(5px 5px 2px rgba(0, 0, 0, 0.25));
     background-color: #87CEEB;
     text-align: center;
+    color: #000000;
 }
 
 .rlist {
     margin-left: 105px;
+    color: #000000;
 }
 
 .plist {
     margin-left: 232.5px;
+    color: #000000;
 }
 
 .iplist {
     margin-left: 362.5px;
+    color: #000000;
 }
 
 .alist {
     margin-left: 507.5px;
+    color: #000000;
 }
 
 input.searchbar {
     width: 1750px;
+    color: #000000;
 }
 
 .searchbtn {
-    margin-left: auto;
+    margin-left: auto !important; 
 }
