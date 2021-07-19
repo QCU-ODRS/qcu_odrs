@@ -16,7 +16,7 @@ include_once "../../resource/opt/dashnav.php";
     ?>
     <style>
       <?php
-        include "../../resource/CssJs/tableview.css";
+        include "../../resource/CssJs/style.css";
       ?>
     </style>
     <title>Document</title>
