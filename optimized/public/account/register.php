@@ -2,7 +2,7 @@
     require_once "../../resource/opt/database.php";
 
 
-    $errors[] ='';
+    $errors =[];
 
     $student_number ='';
     $acc_password ='';
@@ -50,6 +50,7 @@ header('Location: login.php');
 
 ?>
 <h1>REGISTER ACCOUNT</h1>
+
 <?php
     include "../../resource/register_form/form.php";
 ?>

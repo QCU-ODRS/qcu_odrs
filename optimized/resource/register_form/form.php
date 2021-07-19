@@ -36,13 +36,11 @@
     <label>Course</label>
     <div>
     <select class="form-select" name="course">
-        <option selected disabled>--Select One--</option>
+        <option selected value ="default">--Select One--</option>
         <option value="Bachelor of Science in Information Technology">Bachelor of Science in Information Technology</option>
         <option value="Bachelor of Science in Accountancy">Bachelor of Science in Accountancy</option>
-        
     </select>
     </div>
-    
     <label>Year of Admission</label>
     <div>
     <input type="text" class="form-control" name="year_of_enrollment" placeholder="Enter Year" value="<?php echo $year_of_enrollment ?>">
@@ -55,6 +53,4 @@
     
     <button type="submit" class="btn btn-primary">Submit</button>
     
-
-
 </form>
