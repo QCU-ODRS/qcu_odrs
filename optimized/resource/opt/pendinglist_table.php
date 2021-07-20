@@ -1,3 +1,12 @@
+<?php
+    require_once "database.php";
+
+    $search = $_GET['search'] ?? '';
+    if($search) {
+        $statement = $pdo->prepare('SELECT * FROM documents_request');
+    }
+?>
+
 <table class="fixed-header">
     <thead>
         <tr class="bg-dark" style="color: white;">
