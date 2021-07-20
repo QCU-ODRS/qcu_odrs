@@ -96,7 +96,7 @@
     <div class="d-sm-flex">
         <div class="flex-sm-column">
             <div class="row">
-                <input type="type" name="" id="" class="searchbar" placeholder="Search Lists">
+                <input type="type" name="" id="" class="searchbar" placeholder="Search Lists" name="search" value="<?php echo $search?>">
                 <button type="submit" class="btn btn-outline-secondary btnsearch">Search</button>
             </div>
         </div>
