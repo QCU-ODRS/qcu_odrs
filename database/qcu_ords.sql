@@ -104,6 +104,7 @@ CREATE TABLE `student_info` (
 INSERT INTO `student_info` (`student_number`, `last_name`, `first_name`, `middle_name`, `full_name`, `course`, `year`) VALUES
 ('18-1824', 'Tolones', 'Sergej Jr.', 'Ranjo', 'Tolones, Sergej Jr. R.', 'BSIT', 3),
 ('18-1825', 'Xiaodao', 'Ren', 'Xi', 'Xiaodao, Ren X.', 'BSIT', 3);
+('18-0581', 'Libuna', 'Rhoshielamie', 'Anas', 'Libuna, Rhoshielamie A.', 'BSIT', '3');
 
 --
 -- Indexes for dumped tables
