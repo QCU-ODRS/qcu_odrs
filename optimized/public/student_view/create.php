@@ -5,11 +5,12 @@
 //error array for blank fields validation
 $errors = [];
 //empty variable placeholders for empty fields
-$student_number ='';
+$student_number = '';
 $document_id = '';
-$upfile = '2';
-$request_date = date('Y-m-d');
-$request_status = 'PENDING';
+$upfile = '';
+$request_date = '';
+$request_status = '';
+
 
 //SQL database connection
 $conn = new mysqli('localhost','root', '', 'qcu_ords',3306);
@@ -30,22 +31,28 @@ echo '</pre>';
 
 //make sure that the request method is 'post'
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  //empty variable placeholders for empty fields
+  $student_number = $_POST['student_number'];
+  $document_id = $_POST['document_id'];
+  $upfile = '2';
+  $request_date = date('Y-m-d');
+  $request_status = 'PENDING';
   //apply validate script
   require_once "../../resource/opt1/validate.php";
-//make sure that there are no errors
-if(empty($errors)){
-//prepare the query and the variable
-$statement = $pdo->prepare("INSERT INTO document_request (student_number, document_id, request_date, request_status) VALUES (:student_number, :document_id, :request_date, :request_status)");
-//bind values to placeholders
-$statement->bindValue(':student_number', $student_number);
-$statement->bindValue(':document_id', $document_id);
-$statement->bindValue(':request_date', $request_date);
-$statement->bindValue(':request_status', $request_status);
-//$statement->bindValue(':upfile', $upfile);
-$statement->execute();
-//go back to dashboard
-header('Location: pending_request.php');
-    }
+  //make sure that there are no errors
+  if(empty($errors)){
+    //prepare the query and the variable
+    $statement = $pdo->prepare("INSERT INTO document_request (student_number, document_id, request_date, request_status) VALUES (:student_number, :document_id, :request_date, :request_status)");
+    //bind values to placeholders
+    $statement->bindValue(':student_number', $student_number);
+    $statement->bindValue(':document_id', $document_id);
+    $statement->bindValue(':request_date', $request_date);
+    $statement->bindValue(':request_status', $request_status);
+    //$statement->bindValue(':upfile', $upfile);
+    $statement->execute();
+    //go back to dashboard
+    header('Location: pending_request.php');
+  }
 }
 
 //refer header
@@ -71,15 +78,16 @@ require_once "../../resource/opt1/nav.php";
     </div>
     <label>File/s</label>
     <div>
-    <button type="button" class="btn btn btn-outline-dark btn-sm"><span>Up</span>load</button>
+    <input type="file" name="upload_file[]" id="upload_file" class="btn btn btn-outline-dark btn-sm" multiple="multiple">
+    
     </div>
-    <label>Date</label>
+    <!-- <label>Date</label>
     <div>
       <input type="text" name="request_date" value="<?php echo $request_date; ?>" disabled>
       </div>
     <div>
       <input type="text" name="request_status" value="<?php echo $request_status; ?>" disabled hidden>
-    </div>
+    </div> -->
     <br />
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>

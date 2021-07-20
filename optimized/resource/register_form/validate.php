@@ -19,7 +19,7 @@ if (!$first_name) {
 if (!$middle_name) {
     $errors[] = 'Middle Name is required';
 }
-if ($course != 0) {
+if ($course != 'default') {
     $errors[] = 'Course is required';
 }
 if (!$year_of_enrollment) {
