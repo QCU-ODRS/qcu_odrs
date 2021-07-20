@@ -1,4 +1,4 @@
-<table>
+<table class="fixed-header">
     <thead>
         <tr class="bg-dark" style="color: white;">
             <th>Request Number</th>
@@ -10,6 +10,30 @@
         </tr>   
     </thead>
     <tbody>
+        <tr>
+            <td>asd</td>
+            <td>asd</td>
+            <td>asd</td>
+            <td>asd</td>
+            <td>asd</td>
+            <td>asd</td>
+        </tr>
+        <tr>
+            <td>asd</td>
+            <td>asd</td>
+            <td>asd</td>
+            <td>asd</td>
+            <td>asd</td>
+            <td>asd</td>
+        </tr>
+        <tr>
+            <td>asd</td>
+            <td>asd</td>
+            <td>asd</td>
+            <td>asd</td>
+            <td>asd</td>
+            <td>asd</td>
+        </tr>
         <tr>
             <td>asd</td>
             <td>asd</td>

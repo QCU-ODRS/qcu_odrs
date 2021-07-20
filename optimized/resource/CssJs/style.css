@@ -33,6 +33,34 @@ table {
     text-align: center;
 }
 
+.fixed_header{
+    width: 400px;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+.fixed_header tbody{
+  display:block;
+  width: 100%;
+  overflow: auto;
+  height: 100px;
+}
+
+.fixed_header thead tr {
+   display: block;
+}
+
+.fixed_header thead {
+  background: black;
+  color:#fff;
+}
+
+.fixed_header th, .fixed_header td {
+  padding: 5px;
+  text-align: left;
+  width: 200px;
+}
+
 tr {
     box-sizing: border-box;
 }
@@ -80,10 +108,21 @@ button.btns {
 }
 
 input.searchbar {
-    width: 1750px;
+    position: absolute;
+    left: 40px;
+    top: 205px;
+    width: 1726px;
+    height: 38.5px;
+    color: #000000;
+    filter: drop-shadow(0px 5px 2px rgba(0, 0, 0, 0.25));
     color: #000000;
 }
 
-.searchbtn {
-    margin-left: auto !important; 
+button.btnsearch {
+    position: absolute;
+    top: 205px;
+    margin-left: 1465px;
+    width: 100px;
+    filter: drop-shadow(5px 5px 2px rgba(0, 0, 0, 0.25));
+    color: #000000;
 }

@@ -1,3 +1,4 @@
+<!--
 <div class="container">
     <button class="btn btn-primary btns showall" onclick="filterSelection('ShowAll')">Show All</button>
     <button class="btn btn-primary btns rlist" onclick="filterSelection('RequestsList')"> Request List</button>
@@ -8,44 +9,49 @@
 <div class="container">
     <div class="d-sm-flex">
         <div class="flex-sm-column" id="myBtnContainer">
-            <div class="column RequestsList">
-                <div class="content">
-                    <?php
-                        include_once "requestlist_table.php";
-                    ?>
+            <div class="row">
+                <div class="column RequestsList">
+                    <div class="content">
+                        <?php
+                            include_once "requestlist_table.php";
+                        ?>
+                    </div>
                 </div>
-            </div>
-            <div class="column PendingList">
-                <div class="content">
-                    <?php
-                        include_once "pendinglist_table.php";
-                    ?>
+                <div class="column PendingList">
+                    <div class="content">
+                        <?php
+                            include_once "pendinglist_table.php";
+                        ?>
+                    </div>
                 </div>
-            </div>
-            <div class="column In-ProcessList">
-                <div class="content">
-                    <?php
-                        include_once "in-processlist_table.php";
-                    ?>
+                <div class="column In-ProcessList">
+                    <div class="content">
+                        <?php
+                            include_once "in-processlist_table.php";
+                        ?>
+                    </div>
                 </div>
+                <div class="column ArchivedList">
+                    <div class="content">
+                        <?php
+                            include_once "archivedlist_table.php";
+                        ?>
+                    </div>
+                </div>    
             </div>
-            <div class="column ArchivedList">
-                <div class="content">
-                    <?php
-                        include_once "archivedlist_table.php";
-                    ?>
-                </div>
-            </div>
+            
         </div>
     </div>
-</div>
+</div> -->
 
+<!-- 
+<script src="../CssJs/script.js"></script>
 <script>
     filterSelection("ShowAll")
     function filterSelection(c) {
     var x, i;
     x = document.getElementsByClassName("column");
-    if (c == "all") c = "";
+    if (c == "ShowAll") c = "";
     for (i = 0; i < x.length; i++) {
         w3RemoveClass(x[i], "show");
         if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
@@ -84,4 +90,15 @@
         this.className += " active";
     });
     }
-</script>
+</script> -->
+
+<div class="container">
+    <div class="d-sm-flex">
+        <div class="flex-sm-column">
+            <div class="row">
+                <input type="type" name="" id="" class="searchbar" placeholder="Search Lists">
+                <button type="submit" class="btn btn-outline-secondary btnsearch">Search</button>
+            </div>
+        </div>
+    </div>
+</div>
