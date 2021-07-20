@@ -7,7 +7,7 @@ $errors = [];
 //empty variable placeholders for empty fields
 $student_number = '';
 $document_id = '';
-$upfile = '';
+$upfile = [];
 $request_date = '';
 $request_status = '';
 
@@ -41,20 +41,59 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   require_once "../../resource/opt1/validate.php";
   //make sure that there are no errors
   if(empty($errors)){
+    $upfiles = $_FILES['upfile'] ?? null;
+    $file_dir = '';
+    if ($upfiles){
+      
+      $file_dir = '../../resource/files/'.random_string(8);
+      // echo random_string(8);
+      // exit;
+      if (!is_dir($file_dir)){
+        mkdir($file_dir);
+      }
+      $name_arr = [];
+      $tmp_arr = [];
+      
+      foreach($upfiles['name'] as $key => $up_file) {
+        
+        $name_arr[$key] = $up_file;
+      }
+      foreach ($upfiles['tmp_name'] as $key => $up_file){
+        $tmp_arr[$key] = $up_file;
+        //echo $up_file;
+      }
+      // foreach($tmp_arr as $name){
+      //   echo $name;
+      // }
+      for($j = 0; $j < count($upfiles['name']); $j++){
+        move_uploaded_file($tmp_arr[$j], $file_dir.'/'.$name_arr[$j]);
+      }
+      
+    }
+    
     //prepare the query and the variable
-    $statement = $pdo->prepare("INSERT INTO document_request (student_number, document_id, request_date, request_status) VALUES (:student_number, :document_id, :request_date, :request_status)");
+    $statement = $pdo->prepare("INSERT INTO document_request (student_number, document_id, request_date, request_status, upfile) VALUES (:student_number, :document_id, :request_date, :request_status, :upfile)");
     //bind values to placeholders
     $statement->bindValue(':student_number', $student_number);
     $statement->bindValue(':document_id', $document_id);
     $statement->bindValue(':request_date', $request_date);
     $statement->bindValue(':request_status', $request_status);
-    //$statement->bindValue(':upfile', $upfile);
+    $statement->bindValue(':upfile', $file_dir);
     $statement->execute();
     //go back to dashboard
     header('Location: pending_request.php');
   }
+  
 }
-
+function random_string($n){
+  $characters ='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  $str = '';
+  for($i = 0; $i < $n; $i++){
+    $index = rand(0, strlen($characters) - 1);
+    $str .= $characters[$index];
+  }
+  return $str;
+}
 //refer header
 require_once "../../resource/opt1/header.php";
 //refer navigation bar
@@ -78,16 +117,10 @@ require_once "../../resource/opt1/nav.php";
     </div>
     <label>File/s</label>
     <div>
-    <input type="file" name="upload_file[]" id="upload_file" class="btn btn btn-outline-dark btn-sm" multiple="multiple">
+    <input type="file" name="upfile[]" id="upfile" class="btn btn btn-outline-dark btn-sm" multiple="multiple">
     
     </div>
-    <!-- <label>Date</label>
-    <div>
-      <input type="text" name="request_date" value="<?php echo $request_date; ?>" disabled>
-      </div>
-    <div>
-      <input type="text" name="request_status" value="<?php echo $request_status; ?>" disabled hidden>
-    </div> -->
+    
     <br />
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
