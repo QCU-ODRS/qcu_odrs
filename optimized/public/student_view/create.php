@@ -7,7 +7,7 @@ $errors = [];
 //empty variable placeholders for empty fields
 $student_number = '';
 $document_id = '';
-$upfile = [];
+$upfile = '';
 $request_date = '';
 $request_status = '';
 
@@ -34,7 +34,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   //empty variable placeholders for empty fields
   $student_number = $_POST['student_number'];
   $document_id = $_POST['document_id'];
-  $upfile = '2';
   $request_date = date('Y-m-d');
   $request_status = 'PENDING';
   //apply validate script
@@ -67,10 +66,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       // }
       for($j = 0; $j < count($upfiles['name']); $j++){
         move_uploaded_file($tmp_arr[$j], $file_dir.'/'.$name_arr[$j]);
+        $upfile .= $file_dir.'/'.$name_arr[$j]." ";
       }
-      
+      echo $upfile;
     }
-    
     //prepare the query and the variable
     $statement = $pdo->prepare("INSERT INTO document_request (student_number, document_id, request_date, request_status, upfile) VALUES (:student_number, :document_id, :request_date, :request_status, :upfile)");
     //bind values to placeholders
@@ -78,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $statement->bindValue(':document_id', $document_id);
     $statement->bindValue(':request_date', $request_date);
     $statement->bindValue(':request_status', $request_status);
-    $statement->bindValue(':upfile', $file_dir);
+    $statement->bindValue(':upfile', $upfile);
     $statement->execute();
     //go back to dashboard
     header('Location: pending_request.php');
