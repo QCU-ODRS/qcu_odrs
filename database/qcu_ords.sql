@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 20, 2021 at 07:54 PM
+-- Generation Time: Jul 21, 2021 at 06:46 PM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 7.4.20
 
@@ -56,35 +56,18 @@ CREATE TABLE `document_request` (
   `request_date` date NOT NULL,
   `request_status` varchar(20) NOT NULL,
   `remarks` longtext DEFAULT NULL,
-  `upfile` varchar(2048) DEFAULT NULL
+  `upfile` varchar(2048) DEFAULT NULL,
+  `upfile_name` varchar(128) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `document_request`
 --
 
-INSERT INTO `document_request` (`request_number`, `student_number`, `document_id`, `request_date`, `request_status`, `remarks`, `upfile`) VALUES
-(1, '18-1824', 1, '2021-07-08', 'PENDING', '', NULL),
-(2, '18-1825', 2, '2021-07-09', 'PENDING', '', NULL),
-(3, '18-1825', 2, '2021-06-18', 'PENDING', NULL, NULL),
-(4, '18-1824', 1, '2021-09-12', 'RESUBMIT', 'Corrupted File', NULL),
-(5, '18-1824', 11, '0000-00-00', '', NULL, NULL),
-(6, '18-1825', 2, '0000-00-00', '', NULL, NULL),
-(7, '17-1767', 2, '2021-07-13', '', NULL, NULL),
-(8, '16-1690', 1, '2021-07-13', '', NULL, NULL),
-(9, '18-4555', 2, '2021-07-13', '', NULL, NULL),
-(10, '18-4555', 2, '2021-07-13', '', NULL, NULL),
-(11, '12-1290', 1, '2021-07-13', 'PENDING', NULL, NULL),
-(12, '18-1824', 11, '2021-07-13', 'PENDING', NULL, NULL),
-(13, '18-1825', 2, '2021-07-13', 'PENDING', NULL, NULL),
-(14, '18-1825', 11, '2021-07-13', 'PENDING', NULL, NULL),
-(15, '18-1824', 2, '2021-07-15', 'PENDING', NULL, NULL),
-(16, '18-1825', 12, '2021-07-15', 'PENDING', NULL, NULL),
-(17, '18-1824', 12, '2021-07-19', 'PENDING', NULL, NULL),
-(18, '18-1825', 2, '2021-07-19', 'PENDING', NULL, NULL),
-(19, '18-1825', 1, '2021-07-20', 'PENDING', NULL, NULL),
-(20, '18-1824', 12, '2021-07-20', 'PENDING', NULL, NULL),
-(21, '18-1824', 1, '2021-07-20', 'PENDING', NULL, '../../resource/files/j2dSv45x');
+INSERT INTO `document_request` (`request_number`, `student_number`, `document_id`, `request_date`, `request_status`, `remarks`, `upfile`, `upfile_name`) VALUES
+(23, '18-1824', 11, '2021-07-20', 'PROCESSING', NULL, '../../resource/files/cepZmJwW/Nuri-Sejonghakdang Online Korean Level Test System.pdf ', NULL),
+(24, '18-1824', 12, '2021-07-21', 'RESUBMIT', '', '../../resource/files/NxN9mdE1/endeavor.gif ../../resource/files/NxN9mdE1/qculogopng.png ', 'endeavor.gif qculogopng.png '),
+(25, '18-1825', 2, '2021-07-21', 'PROCESSING', 'PROCESSING', '../../resource/files/aVu4yHYo/qculogopng.png ../../resource/files/aVu4yHYo/valorant.png ', 'qculogopng.png valorant.png ');
 
 -- --------------------------------------------------------
 
@@ -111,18 +94,16 @@ CREATE TABLE `student_info` (
   `full_name` varchar(128) NOT NULL,
   `course` varchar(128) NOT NULL,
   `year_of_enrollment` varchar(16) NOT NULL,
-  `date_created` date DEFAULT NULL,
-  `acc_password` varchar(32) NOT NULL,
-  `confirm_pass` varchar(32) NOT NULL
+  `email` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `student_info`
 --
 
-INSERT INTO `student_info` (`student_number`, `last_name`, `first_name`, `middle_name`, `full_name`, `course`, `year_of_enrollment`, `date_created`, `acc_password`, `confirm_pass`) VALUES
-('18-1824', 'Tolones', 'Sergej Jr.', 'Ranjo', 'Tolones, Sergej Jr. R.', 'BSIT', '3', NULL, '', ''),
-('18-1825', 'Xiaodao', 'Ren', 'Xi', 'Xiaodao, Ren X.', 'BSIT', '3', NULL, '', '');
+INSERT INTO `student_info` (`student_number`, `last_name`, `first_name`, `middle_name`, `full_name`, `course`, `year_of_enrollment`, `email`) VALUES
+('18-1824', 'Tolones', 'Sergej Jr.', 'Ranjo', 'Tolones, Sergej Jr. R.', 'BSIT', '3', ''),
+('18-1825', 'Xiaodao', 'Ren', 'Xi', 'Xiaodao, Ren X.', 'BSIT', '3', '');
 
 --
 -- Indexes for dumped tables
@@ -166,7 +147,7 @@ ALTER TABLE `documents`
 -- AUTO_INCREMENT for table `document_request`
 --
 ALTER TABLE `document_request`
-  MODIFY `request_number` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `request_number` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
