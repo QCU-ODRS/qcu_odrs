@@ -8,6 +8,7 @@ $errors = [];
 $student_number = '';
 $document_id = '';
 $upfile = '';
+$upfile_name = '';
 $request_date = '';
 $request_status = '';
 
@@ -67,17 +68,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       for($j = 0; $j < count($upfiles['name']); $j++){
         move_uploaded_file($tmp_arr[$j], $file_dir.'/'.$name_arr[$j]);
         $upfile .= $file_dir.'/'.$name_arr[$j]." ";
+        $upfile_name .= $name_arr[$j]." ";
       }
       echo $upfile;
     }
     //prepare the query and the variable
-    $statement = $pdo->prepare("INSERT INTO document_request (student_number, document_id, request_date, request_status, upfile) VALUES (:student_number, :document_id, :request_date, :request_status, :upfile)");
+    $statement = $pdo->prepare("INSERT INTO document_request (student_number, document_id, request_date, request_status, upfile, upfile_name) VALUES (:student_number, :document_id, :request_date, :request_status, :upfile, :upfile_name)");
     //bind values to placeholders
     $statement->bindValue(':student_number', $student_number);
     $statement->bindValue(':document_id', $document_id);
     $statement->bindValue(':request_date', $request_date);
     $statement->bindValue(':request_status', $request_status);
     $statement->bindValue(':upfile', $upfile);
+    $statement->bindValue(':upfile_name', $upfile_name);
     $statement->execute();
     //go back to dashboard
     header('Location: pending_request.php');
