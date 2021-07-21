@@ -6,9 +6,7 @@
       <th scope="col">#</th>
       <th scope="col">Date</th>
       <th scope="col">Student Number</th>
-      <th scope="col">Full Name</th>
-      <th scope="col">Course</th>
-      <th scope="col">Year of Admission</th>
+      <th scope="col">Last Name</th>
       <th scope="col">Document Name</th>
       <th scope="col">Action</th>
       
@@ -20,12 +18,10 @@
         <th scope="row"><?php echo $i + 1 ?></th>
         <td><?php echo $request['request_date']?></td>
         <td><?php echo $request['student_number']?></td>
-        <td><?php echo $request['full_name']?></td>
-        <td><?php echo $request['course']?></td>
-        <td><?php echo $request['year_of_enrollment']?></td>
+        <td><?php echo $request['last_name']?></td>
         <td><?php echo $request['document_name']?></td>
         <td>
-        <a href="view.php?request_number=<?php echo $request['request_number'] ?>"  class="btn btn-sm btn-outline-primary">View</a>
+        <a href="<?php echo $view.$request['request_number'] ?>"  class="btn btn-sm btn-outline-primary">View Details</a>
         </td>
       </tr>
     <?php endforeach ?>

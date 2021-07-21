@@ -6,6 +6,7 @@
 require_once "../../resource/opt2/database.php";
 include_once "../../resource/opt2/header.php";
 
+
 // echo '<pre>';
 // echo var_dump($_GET);
 // echo '</pre>';
@@ -63,7 +64,7 @@ $requests = $statement->fetchAll(PDO::FETCH_ASSOC);
                 $arr_name = explode(' ', $request['upfile_name']);
                 for($j = 0; $j < count($arr_name); $j++):
         ?>
-                <a href="<?php echo $request['upfile'].'/'.$arr_name[$j]; ?>" target="_blank"><?php echo $arr_name[$j]?></a><br>
+                <a href="<?php echo $request['upfile'].'/'.$arr_name[$j] ?>" target="_blank"><?php echo $arr_name[$j]?></a><br>
                 <?php endfor;
                  else: ?>
                      <i>No Attachments</i>
@@ -76,7 +77,7 @@ $requests = $statement->fetchAll(PDO::FETCH_ASSOC);
           <button type="submit" class="btn btn-sm btn-outline-success">Approve</button>
         </form>
         <br>
-        <a onclick="return confirm('Are you sure?')" href="reject.php?request_number=<?php echo $request['request_number'] ?>"  class="btn btn-sm btn-outline-danger">Reject</a>
+        <a href="reject.php?request_number=<?php echo $request['request_number'] ?>"  class="btn btn-sm btn-outline-danger">Reject</a>
         </td>
         </tr>
     <?php endforeach ?>

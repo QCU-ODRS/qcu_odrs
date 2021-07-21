@@ -26,9 +26,9 @@ while ($row = mysqli_fetch_array($result)){
 require_once "../../resource/opt1/database.php";
 
 //check if the information is posting
-echo '<pre>';
-var_dump($_POST);
-echo '</pre>';
+// echo '<pre>';
+// var_dump($_POST);
+// echo '</pre>';
 
 //make sure that the request method is 'post'
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -65,9 +65,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       // foreach($tmp_arr as $name){
       //   echo $name;
       // }
+      $upfile = $file_dir;
       for($j = 0; $j < count($upfiles['name']); $j++){
         move_uploaded_file($tmp_arr[$j], $file_dir.'/'.$name_arr[$j]);
-        $upfile .= $file_dir.'/'.$name_arr[$j]." ";
         $upfile_name .= $name_arr[$j]." ";
       }
       echo $upfile;

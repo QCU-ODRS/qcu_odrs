@@ -9,10 +9,16 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="resubmit_request.php">Resubmit</a>
+        <a class="nav-link" href="pending_request.php">Pending List</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="pending_request.php">Pending</a>
+        <a class="nav-link" href="resubmit_request.php">Resubmit List</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="in_process_request.php">In-Process List</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="for_pick_request.php">For Pick-Up List</a>
       </li>
       <li class="nav-item">
         <a class="nav-link disabled" href="#">Logout</a>
