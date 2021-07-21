@@ -3,19 +3,20 @@
 <table class="table">
   <thead class="table-dark">
     <tr>
-      <th scope="col"><button>#</button></th>
-      <th scope="col"><button>Date</button></th>
-      <th scope="col"><button>Student Number</button></th>
-      <th scope="col"><button>Full Name</button></th>
-      <th scope="col"><select><option selected>Course</option></select</th>
-      <th scope="col"><select><option selected>Year</option></select></th>
-      <th scope="col"><select><option selected>Document Name</option></select></th>
+      <th scope="col">#</th>
+      <th scope="col">Date</th>
+      <th scope="col">Student Number</th>
+      <th scope="col">Full Name</th>
+      <th scope="col">Course</th>
+      <th scope="col">Year of Admission</th>
+      <th scope="col">Document Name</th>
+      <th scope="col">Action</th>
+      
     </tr>
   </thead>
   <tbody>
   <?php foreach ($requests as $i => $request): ?>
-      <tr class="clickable text-center" onclick="window.location='php/?request_id=<?php echo $requests['request_id'] ?>'">
-
+      <tr>
         <th scope="row"><?php echo $i + 1 ?></th>
         <td><?php echo $request['request_date']?></td>
         <td><?php echo $request['student_number']?></td>
@@ -23,7 +24,9 @@
         <td><?php echo $request['course']?></td>
         <td><?php echo $request['year_of_enrollment']?></td>
         <td><?php echo $request['document_name']?></td>
-
+        <td>
+        <a href="view.php?request_number=<?php echo $request['request_number'] ?>"  class="btn btn-sm btn-outline-primary">View</a>
+        </td>
       </tr>
     <?php endforeach ?>
   </tbody>
