@@ -76,6 +76,7 @@ $requests = $statement->fetchAll(PDO::FETCH_ASSOC);
           <input type="hidden" name="request_number" value="<?php echo $request['request_number'] ?>" />
           <button type="submit" class="btn btn-sm btn-outline-success">Approve</button>
         </form>
+        <br>
         <a href="reject.php?document_id=<?php echo $request['request_number'] ?>"  class="btn btn-sm btn-outline-danger">Reject</a>
         </td>
         </tr>
