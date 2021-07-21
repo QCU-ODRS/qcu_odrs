@@ -30,13 +30,13 @@ include_once "../../resource/opt/dashnav.php";
             // require("../../resource/opt/requestlist_table.php");
         ?>
         <?php
-           // require("../../resource/opt/pendinglist_table.php");
+           // require("pending_list.php");
         ?>
         <?php
-            //require("../../resource/opt/in-processlist_table.php");
+            // require("../../resource/opt/in-processlist_table.php");
         ?>
         <?php
-            require("../../resource/opt/archivedlist_table.php");
+            // require("../../resource/opt/archivedlist_table.php");
         ?>
 
         <script src="../../resource/CssJs/script.js"></script>
