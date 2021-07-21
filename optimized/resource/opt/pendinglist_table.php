@@ -19,7 +19,6 @@
             <th scope="col">Date Requested</th>
             <th scope="col">Student Number</th>
             <th scope="col">Document Requested</th>
-            <th scope="col">File Viewer</th>
             <th scope="col">Action</th>
         </tr>   
     </thead>
@@ -35,32 +34,29 @@
             </th>
             <td>
                 <?php
-                    echo $request['request_number']
+                    echo $request['request_number'];
                 ?>
             </td>
             <td>
                 <?php
-                    echo $request['request_date']
+                    echo $request['request_date'];
                 ?>
             </td>
             <td>
                 <?php
-                    echo $request['student_number']
+                    echo $request['student_number'];
                 ?>
             </td>
             <td>
                 <?php
-                    echo $request['request_number']
+                    echo $request['request_number'];
+                    echo 'ikaw na bahala dito sa part na ito? :) ';
                 ?>
             </td>
             <td>
                 <?php
-                    echo $request['request_number']
-                ?>
-            </td>
-            <td>
-                <?php
-                    echo $request['request_number']
+                    echo $request['request_number'];
+                    echo 'ikaw na bahala dito sa part na ito? :) ';
                 ?>
             </td>
         </tr>
