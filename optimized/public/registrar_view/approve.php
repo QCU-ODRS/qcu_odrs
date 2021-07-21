@@ -9,6 +9,7 @@ require_once "../../resource/opt2/database.php";
 //store post value
 $id = $_POST['request_number'] ?? null;
 $status = 'PROCESSING';
+
 echo '<pre>';
 echo var_dump($_POST);
 echo '</pre>';
@@ -19,7 +20,7 @@ if (!$id){
     exit;
 }
 //prepare statement
-$statement = $pdo->prepare('UPDATE document_request SET remarks = :stat WHERE request_number = :id');
+$statement = $pdo->prepare('UPDATE document_request SET request_status = :stat WHERE request_number = :id');
 //bind value to placeholder
 $statement->bindValue(':stat', $status);
 $statement->bindValue(':id', $id);

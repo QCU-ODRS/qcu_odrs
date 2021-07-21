@@ -20,7 +20,7 @@ $requests = $statement->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 <?php include_once "../../resource/opt2/nav.php";?>
-<h1>DETAILS</h1>
+<h1>DETAILS<?php echo ' OF REQUEST '.$request_get?></h1>
 <table class="table">
   <thead class="table-dark">
     <tr>
@@ -77,7 +77,7 @@ $requests = $statement->fetchAll(PDO::FETCH_ASSOC);
           <button type="submit" class="btn btn-sm btn-outline-success">Approve</button>
         </form>
         <br>
-        <a href="reject.php?document_id=<?php echo $request['request_number'] ?>"  class="btn btn-sm btn-outline-danger">Reject</a>
+        <a href="reject.php?request_number=<?php echo $request['request_number'] ?>"  class="btn btn-sm btn-outline-danger">Reject</a>
         </td>
         </tr>
     <?php endforeach ?>

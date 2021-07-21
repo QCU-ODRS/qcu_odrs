@@ -6,49 +6,57 @@
 
 
 require_once "../../resource/opt2/database.php";
+
+$id =$_GET['request_number'] ?? null;
+$remarks = '';
+$status = 'RESUBMIT';
 // echo '<pre>';
-// var_dump($_POST);
+// var_dump($_GET);
 // echo '</pre>';
-
-$id =$_GET['request_id'] ?? null;
-
+// exit;
 if (!$id){
-    header('Location: documents.php');
+    header('Location: pending_list.php');
     exit;
 }
-
-$statement = $pdo->prepare('SELECT * FROM documents WHERE document_id = :id');
-$statement->bindValue(':id', $id);
-$statement->execute();
-$document = $statement->fetch(PDO::FETCH_ASSOC);
-
+$query = $pdo->prepare('SELECT remarks FROM document_request WHERE request_number = :id');
+//bind value to placeholders
+$query->bindValue(':id', $id);
+$query->execute();
+$requests = $query->fetch(PDO::FETCH_ASSOC);
 
 $errors = [];
 
-$title =$document['document_name'];
-$requirements =$document['requirements'];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    require_once "../../opt/validate.php";
+    if(empty($errors)){
+    $statement = $pdo->prepare("UPDATE document_request SET remarks = :remarks, request_status = :stat WHERE request_number = :id");
 
-if(empty($errors)){
-$statement = $pdo->prepare("UPDATE documents SET document_name = :title, requirements = :requirements WHERE document_id = :id");
+    $statement->bindValue(':stat', $status);
+    $statement->bindValue(':remarks', $remarks);
+    $statement->bindValue(':id', $id);
+    $statement->execute();
 
-$statement->bindValue(':title', $title);
-$statement->bindValue(':requirements', $requirements);
-$statement->bindValue(':id', $id);
-$statement->execute();
-header('Location: documents.php');
+    header('Location: pending_list.php');
     }
 }
 ?>
 
-<?php include_once "../../opt/header.php"; ?>
-<?php include_once "../../opt/nav.php"; ?>
+<?php include_once "../../resource/opt2/header.php"; ?>
+<?php include_once "../../resource/opt2/nav.php"; ?>
 
-<h1>UPDATE DOCUMENT&nbsp;<b><?php echo $document['document_name'] ?></b></h1>
-  
-<?php include_once "../../opt/form.php"?>
+<h1>REJECT&nbsp;<b><?php echo $id ?></b></h1>
+<form action ="" method="post">
+    <div class="form-group">
+        <label>Remarks</label>
+        <textarea class="form-control" name="remarks" placeholder="Please leave a remark" value="<?php if(!$requests['remarks']) {
+            echo $requests['remarks']; 
+        }    
+        ?>"></textarea>
+        
+    </div>
+    <br>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
 
 
 
