@@ -1,28 +1,24 @@
 <?php
-// user click table row 
+    require_once "../../resource/opt1/database.php";
+    require_once "../../resource/opt1/header.php";
 
 
+    require_once "../../resource/opt1/nav.php";
+    $request_get = $_GET['request_number'];
 
-require_once "../../resource/opt2/database.php";
-include_once "../../resource/opt2/header.php";
+    
 
+    $statement = $pdo->prepare("SELECT document_request.request_number, document_request.request_date, student_info.student_number, student_info.full_name, student_info.course, student_info.year_of_enrollment, documents.document_name, documents.requirements, document_request.remarks, document_request.upfile, document_request.upfile_name, document_request.date_approved, document_request.date_released FROM document_request INNER JOIN student_info ON document_request.student_number = student_info.student_number JOIN documents ON document_request.document_id = documents.document_id WHERE document_request.request_number = :request_get");
+    $statement->bindValue(':request_get', $request_get);
+    $statement->execute();
+    $requests = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-// echo '<pre>';
-// echo var_dump($_GET);
-// echo '</pre>';
-
-$request_get = $_GET['request_number'];
-$release = NULL; 
-
-$statement = $pdo->prepare("SELECT document_request.request_number, document_request.request_date, student_info.student_number, student_info.full_name, student_info.course, student_info.year_of_enrollment, documents.document_name, documents.requirements, document_request.remarks, document_request.upfile, document_request.upfile_name, document_request.date_approved FROM document_request INNER JOIN student_info ON document_request.student_number = student_info.student_number JOIN documents ON document_request.document_id = documents.document_id WHERE document_request.request_number = :request_get");
-$statement->bindValue(':request_get', $request_get);
-$statement->execute();
-$requests = $statement->fetchAll(PDO::FETCH_ASSOC);
-
-
+    // echo '<pre>';
+    // echo var_dump($requests);
+    // echo '</pre>';
 ?>
-<?php include_once "../../resource/opt2/nav.php";?>
-<h1>DETAILS<?php echo ' OF REQUEST#'.$request_get?></h1>
+<!-- content -->
+<h1>REQUEST IN-PROCESS DETAILS</h1>
 <table class="table">
   <thead class="table-dark">
     <tr>
@@ -36,7 +32,7 @@ $requests = $statement->fetchAll(PDO::FETCH_ASSOC);
       <th scope="col">Remarks</th>
       <th scope="col">Attachments</th>
       <th scope="col">Date Approved</th>
-      <th scope="col">Actions</th>
+      <th scope="col">Date of Release</th>
     </tr>
   </thead>
   <tbody>
@@ -70,25 +66,16 @@ $requests = $statement->fetchAll(PDO::FETCH_ASSOC);
                 <?php endfor;
                  else: ?>
                      <i>No Attachments</i>
-                <?php
-                endif ?>
+            <?php
+            endif ?>
         </td>
+            
         <td><?php echo $request['date_approved']?></td>
-        <td>
-        <form method="post"  action="release.php">
-          <input type="hidden" name="request_number" value="<?php echo $request['request_number'] ?>" />
-          <button type="submit" class="btn btn-sm btn-outline-success">Set to Release</button>
-          <br>
-          <?php
-          $today = date('Y-m-d');
-          $release = date('Y-m-d', strtotime($today.'+ 1 days'));
-          echo '<i>'.$release.'</i>'?>
-        </form>
-        </td>
+        <td><?php echo $request['date_released']?></td>
         </tr>
     <?php endforeach ?>
 
   </tbody>
 </table>
-</body>
+  </body>
 </html>

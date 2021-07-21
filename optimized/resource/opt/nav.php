@@ -11,8 +11,14 @@
       <li class="nav-item active">
         <a class="nav-link" href="documents.php">Document List</a>
       </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="../pending_list.php">Pending List</a>
+      </li>
       <li class="nav-item">
-        <a class="nav-link" href="../registrar_view/review.php">Review</a>
+        <a class="nav-link" href="../in_process_list.php">In-Process List</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="../for_release_list.php">For-Release List</a>
       </li>
       <li class="nav-item">
         <a class="nav-link disabled" href="#">Logout</a>

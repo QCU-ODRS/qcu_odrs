@@ -1,8 +1,8 @@
 <?php
 //registrar landing page
 
-include_once "../../resource/opt/header.php";
-include_once "../../resource/opt/dashnav.php";
+include_once "../../resource/opt2/header.php";
+include_once "../../resource/opt2/nav.php";
 
 ?>
 <!DOCTYPE html>
@@ -19,7 +19,7 @@ include_once "../../resource/opt/dashnav.php";
         include "../../resource/CssJs/style.css";
       ?>
     </style>
-    <title>Document</title>
+    <title>Dashboard</title>
 </head>
     <body>
         <?php

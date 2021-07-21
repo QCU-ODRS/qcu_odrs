@@ -4,11 +4,11 @@
 
 
 //PDO database connection
-require_once "../../resource/opt1/database.php";
+require_once "../../resource/opt2/database.php";
 
 //store post value
-$id = $_GET['request_number'] ?? null;
-$status = 'CANCELLED';
+$id = $_POST['request_number'] ?? null;
+$status = 'FINISHED';
 $fn_date = date('Y-m-d');
 
 echo '<pre>';
@@ -17,7 +17,7 @@ echo '</pre>';
 
 //make sure id has value
 if (!$id){
-    header('Location: pending_request.php');
+    header('Location: in_process_list.php');
     exit;
 }
 //prepare statement
@@ -28,6 +28,6 @@ $statement->bindValue(':a_date', $fn_date);
 $statement->bindValue(':id', $id);
 $statement->execute();
 //redirect
-header('Location: pending_request.php');
+header('Location: for_release_list.php');
 
 ?>
