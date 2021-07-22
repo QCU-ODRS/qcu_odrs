@@ -12,5 +12,5 @@
     <script src="../../resource/CssJs/script.js" ></script>
     <?php
     $url1=$_SERVER['REQUEST_URI'];
-    header("Refresh: 5; URL=$url1");
+    header("Refresh: 60; URL=$url1");
 ?>
