@@ -7,8 +7,8 @@
 
 require_once "../../resource/opt2/database.php";
 
-$id =$_GET['request_number'] ?? null;
-$remarks = '';
+$id = $_GET['request_number'] ?? null;
+
 $status = 'RESUBMIT';
 // echo '<pre>';
 // var_dump($_GET);
@@ -28,6 +28,10 @@ $errors = [];
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $remarks = $_POST['remarks'];
+    echo '<pre>';
+    echo var_dump($_POST);
+    echo '</pre>';
     if(empty($errors)){
     $statement = $pdo->prepare("UPDATE document_request SET remarks = :remarks, request_status = :stat WHERE request_number = :id");
 
@@ -44,11 +48,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <?php include_once "../../resource/opt2/header.php"; ?>
 <?php include_once "../../resource/opt2/nav.php"; ?>
 
-<h1>REJECT&nbsp;<b><?php echo $id ?></b></h1>
+<h1>REJECT REQUEST#<b><?php echo $id ?></b></h1>
 <form action ="" method="post">
     <div class="form-group">
         <label>Remarks</label>
-        <textarea class="form-control" name="remarks" placeholder="Please leave a remark" value="<?php if(!$requests['remarks']) {
+        <textarea class="form-control" name="remarks" placeholder="Please leave a remark or a reason why it is rejected" value="<?php if($requests['remarks']) {
             echo $requests['remarks']; 
         }    
         ?>"></textarea>

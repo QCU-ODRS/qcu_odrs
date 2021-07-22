@@ -8,8 +8,8 @@ require_once "../../resource/opt2/database.php";
 
 //store post value
 $id = $_POST['request_number'] ?? null;
-$status = 'PROCESSING';
-$appr_date = date('Y-m-d');
+$status = 'FINISHED';
+$fn_date = date('Y-m-d');
 
 echo '<pre>';
 echo var_dump($_POST);
@@ -21,13 +21,13 @@ if (!$id){
     exit;
 }
 //prepare statement
-$statement = $pdo->prepare('UPDATE document_request SET request_status = :stat, date_approved = :a_date WHERE request_number = :id');
+$statement = $pdo->prepare('UPDATE document_request SET request_status = :stat, date_finished = :a_date WHERE request_number = :id');
 //bind value to placeholder
 $statement->bindValue(':stat', $status);
-$statement->bindValue(':a_date', $appr_date);
+$statement->bindValue(':a_date', $fn_date);
 $statement->bindValue(':id', $id);
 $statement->execute();
 //redirect
-header('Location: pending_list.php');
+header('Location: for_release_list.php');
 
 ?>

@@ -6,10 +6,9 @@
     require_once "../../resource/opt2/database.php";
     include_once "../../resource/opt2/header.php";
     include_once "../../resource/opt2/nav.php"; 
-
 $search = $_GET['search'] ?? '';
-$status = 'PROCESSING';
-$view = 'view1.php?request_number=';
+$status = 'RELEASE';
+$view = 'view2.php?request_number=';
 if($search) {
   $statement = $pdo->prepare("SELECT document_request.request_number, document_request.request_date, student_info.student_number, student_info.last_name, documents.document_name FROM document_request INNER JOIN student_info ON document_request.student_number = student_info.student_number JOIN documents ON document_request.document_id = documents.document_id WHERE document_request.request_status = :stat AND (student_info.student_number LIKE :student_number OR student_info.full_name LIKE :full_name OR documents.document_name LIKE :document_name) ORDER BY document_request.request_number DESC");
   $statement->bindValue(':document_name', "%$search%");
@@ -29,7 +28,7 @@ $requests = $statement->fetchAll(PDO::FETCH_ASSOC);
 // echo '</pre>';
 ?>
 
-<h1>PROCESSING REQUESTS</h1>
+<h1>RELEASING REQUESTS</h1>
 
 <form>
   <div class="input-group mb-3">

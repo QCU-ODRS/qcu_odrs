@@ -3,70 +3,104 @@
 
 $errors = [];
 
-$student_number ='';
-$document_id = '';
-$remarks = '';
 $upfile ='';
+$upfile_name = '';
 $request_status = 'PENDING';
-
-$conn = new mysqli('localhost','root', '', 'qcu_ords',3306);
-$sql ="SELECT document_name FROM documents ORDER BY document_id DESC";
-$result = $conn->query($sql);
-while ($row = mysqli_fetch_array($result)){
-    $rows[] = $row;
-}
 
 require_once "../../resource/opt1/database.php";
 
 $id =$_GET['request_number'] ?? null;
 
 if (!$id){
-    header('Location: pending_request.php');
+    header('Location: resubmit_request.php');
     exit;
 }
 
-$statement = $pdo->prepare('SELECT * FROM document_request WHERE request_number = :id');
+$statement = $pdo->prepare('SELECT request_number, upfile, upfile_name FROM document_request WHERE request_number = :id');
 $statement->bindValue(':id', $id);
 $statement->execute();
 $requests = $statement->fetch(PDO::FETCH_ASSOC);
-echo '<pre>';
-var_dump($_POST);
-echo '</pre>';
+
+// echo '<pre>';
+// var_dump($requests);
+// echo '</pre>';
+
+
+$file_dir = $requests['upfile'];
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  require_once "../../opt1/validate.php";
-  
-if(empty($errors)){
-$statement = $pdo->prepare("INSERT INTO document_request (student_number, document_id, request_date, request_status, remarks, upfile) VALUES (:student_number, :document_id, :request_date, :request_status, :remarks, :upfile)");
+  //validate
+  $upfiles = $_FILES['upfile'] ?? null;
+  // echo '<pre>';
+  // var_dump($_FILES);
+  // echo '</pre>';
+  // exit;
+  if(empty($errors)){
+    if($requests['upfile_name'] != NULL ){
+      $arr_name = explode(' ',$requests['upfile_name']);
 
-$statement->bindValue(':student_number', $student_number);
-$statement->bindValue(':document_id', $document_id);
-$statement->bindValue(':reuest_date', $request_date);
-$statement->bindValue(':request_status', $request_status);
-$statement->bindValue(':remarks', $remarks);
-$statement->bindValue(':upfile', $upfile);
-$statement->execute();
-
-header('Location: pending_requests.php');
+      for($j = 0; $j < count($arr_name); $j++){
+        $dir_file = $requests['upfile'].'/'.$arr_name[$j];
+        if(file_exists($dir_file)){
+          unlink($dir_file);
+        }
+        
+      }
     }
+      
+  
+    
+    if ($upfiles){
+      
+      if (!is_dir($file_dir)){
+        mkdir($file_dir);
+      }
+
+      $name_arr = [];
+      $tmp_arr = [];
+      
+      foreach($upfiles['name'] as $key => $up_file) {
+        
+        $name_arr[$key] = $up_file;
+      }
+      foreach ($upfiles['tmp_name'] as $key => $up_file){
+        $tmp_arr[$key] = $up_file;
+        //echo $up_file;
+      }
+      // foreach($tmp_arr as $name){
+      //   echo $name;
+      // }
+      $upfile = $file_dir;
+      for($j = 0; $j < count($upfiles['name']); $j++){
+        move_uploaded_file($tmp_arr[$j], $file_dir.'/'.$name_arr[$j]);
+        $upfile_name .= $name_arr[$j]." ";
+      }
+    }
+    $statement = $pdo->prepare("UPDATE document_request SET request_status = :stat, upfile = :upfile, upfile_name = :upfile_name WHERE request_number = :id");
+
+    $statement->bindValue(':stat', $request_status);
+    $statement->bindValue(':upfile', $upfile);
+    $statement->bindValue(':upfile_name', $upfile_name);
+    $statement->bindValue(':id', $id);
+    $statement->execute();
+
+    header('Location: pending_request.php');
+  }
 }
 
 
-require_once "../../opt1/header.php";
-require_once "../../opt1/nav.php";
+require_once "../../resource/opt1/header.php";
+require_once "../../resource/opt1/nav.php";
 ?>
 
 <h1>UPDATE REQUEST&nbsp;<b><?php echo $requests['request_number'] ?></b> </h1>
-<?php include_once "../../opt1/form.php"; ?>
-        <?php foreach ($rows as $row):
-         echo '<option value="'.$row['document_id'].'">'.$row['document_name'].'</option>';
-        endforeach; ?> 
-    </select>
-    </div>
+  <form action="" method="post" enctype="multipart/form-data">
+    <br />
     <label>File/s</label>
     <div>
-    <button type="button" class="btn btn btn-outline-dark btn-sm"><span>Up</span>load</button>
+    <input type="file" name="upfile[]" id="upfile" class="btn btn btn-outline-dark btn-sm" multiple="multiple">
     </div>
-    <br />
+    <br>
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
   </body>

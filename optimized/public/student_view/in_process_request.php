@@ -1,49 +1,36 @@
 <?php
-//PDO database connection
     require_once "../../resource/opt1/database.php";
-//refer header
     include_once "../../resource/opt1/header.php";
-//refer navigation bar
     include_once "../../resource/opt1/nav.php"; 
-//search algorithm
 $search = $_GET['search'] ?? '';
 if($search) {
-  $statement = $pdo->prepare("SELECT document_request.request_number, document_request.request_date, student_info.student_number, student_info.last_name, documents.document_names, document_request.request_status FROM document_request INNER JOIN student_info ON document_request.student_number = student_info.student_number JOIN documents ON document_request.document_id = documents.document_id WHERE (student_info.student_number LIKE :student_number OR student_info.full_name LIKE :full_name OR documents.document_name LIKE :document_name) AND document_request.request_status IN ('RESUBMIT','PENDING','PROCESSING','RELEASE') ORDER BY document_request.request_number DESC");
+  $statement = $pdo->prepare("SELECT document_request.request_number, document_request.request_date, student_info.student_number, student_info.full_name, documents.document_name, documents.requirements, document_request.remarks FROM document_request INNER JOIN student_info ON document_request.student_number = student_info.student_number JOIN documents ON document_request.document_id = documents.document_id WHERE (student_info.student_number LIKE :student_number OR student_info.full_name LIKE :full_name OR documents.document_name LIKE :document_name) AND document_request.request_status LIKE 'PROCESSING' ORDER BY document_request.request_number DESC");
   $statement->bindValue(':document_name', "%$search%");
   $statement->bindValue(':student_number', "%$search%");
   $statement->bindValue(':full_name', "%$search%");
 } else {
-  $statement = $pdo->prepare("SELECT document_request.request_number, document_request.request_date, student_info.student_number, student_info.last_name,  documents.document_name, document_request.request_status FROM document_request INNER JOIN student_info ON document_request.student_number = student_info.student_number JOIN documents ON document_request.document_id = documents.document_id WHERE document_request.request_status IN ('RESUBMIT','PENDING','PROCESSING','RELEASE') ORDER BY document_request.request_number DESC");
+  $statement = $pdo->prepare("SELECT document_request.request_number, document_request.request_date, student_info.student_number, student_info.full_name, documents.document_name, documents.requirements, document_request.remarks FROM document_request INNER JOIN student_info ON document_request.student_number = student_info.student_number JOIN documents ON document_request.document_id = documents.document_id WHERE document_request.request_status LIKE 'PROCESSING' ORDER BY document_request.request_number DESC");
 }
 $statement->execute();
 $requests = $statement->fetchAll(PDO::FETCH_ASSOC);
-
-//check if the information is fetched
 // echo '<pre>';
 // var_dump($requests);
 // echo '</pre>';
-// exit;
 ?>
 
-
-
-<!-- content -->
-<h1>CURRENT REQUESTS</h1>
-<!-- new request button -->
+<h1>IN-PROCESS REQUESTS</h1>
 <p>
   <a href="create.php" class="btn btn-success">Add Request</a>
 </p>
 
-
-<!-- search elements -->
 <form>
   <div class="input-group mb-3">
-    <input type="text" class="form-control" placeholder="Search Pending Requests" name="search" value="<?php echo $search?>">
+    <input type="text" class="form-control" placeholder="Search Processing Requests" name="search" value="<?php echo $search?>">
     <div class="input-group-append">
       <button class="btn btn-outline-secondary" type="submit">Search</button>
     </div>
 </div>
-<!-- table view -->
+
 </form>
 <table class="table">
   <thead class="table-dark">
@@ -51,24 +38,23 @@ $requests = $statement->fetchAll(PDO::FETCH_ASSOC);
       <th scope="col">#</th>
       <th scope="col">Date</th>
       <th scope="col">Student Number</th>
-      <th scope="col">Last Name</th>
+      <th scope="col">Full Name</th>
       <th scope="col">Document</th>
-      <th scope="col">Status</th>
       <th scope="col">Action</th>
     </tr>
   </thead>
   <tbody>
-  <!-- array from database to rows -->
   <?php foreach ($requests as $i => $request): ?>
       <tr>
         <th scope="row"><?php echo $i + 1 ?></th>
         <td><?php echo $request['request_date']?></td>
         <td><?php echo $request['student_number']?></td>
-        <td><?php echo $request['last_name']?></td>
+        <td><?php echo $request['full_name']?></td>
         <td><?php echo $request['document_name']?></td>
-        <td><?php echo $request['request_status']?></td>
         <td>
-        <a href="viewall.php?request_number=<?php echo $request['request_number'] ?>"  class="btn btn-sm btn-outline-primary">View Details</a>
+        <form>
+        <a href="in_process_view.php?request_number=<?php echo $request['request_number'] ?>"  class="btn btn-sm btn-outline-primary">View Details</a>
+        </form>
         </td>
       </tr>
     <?php endforeach ?>

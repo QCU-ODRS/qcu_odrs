@@ -31,6 +31,7 @@
       <th scope="col">Requirements</th>
       <th scope="col">Remarks</th>
       <th scope="col">Attachments</th>
+      <th scope="col">Action</th>
     </tr>
   </thead>
   <tbody>
@@ -57,6 +58,7 @@
         <td>
         <?php
             if($request['upfile'] != NULL && $request['upfile_name'] != NULL): 
+                
                 $arr_name = explode(' ', $request['upfile_name']);
                 for($j = 0; $j < count($arr_name); $j++):
         ?>
@@ -66,6 +68,13 @@
                      <i>No Attachments</i>
                 <?php
                 endif ?>
+            </td>
+            <td>
+                <a onclick="return confirm('This will overwrite the already submitted files. Are you sure?')" href="update.php?request_number=<?php echo $request['request_number'] ?>"  class="btn btn-sm btn-outline-primary">Resend Attachments</a>
+                <br>
+                <br>
+                <a onclick="return confirm('Are you sure?')" href="cancel.php?request_number=<?php echo $request['request_number'] ?>"  class="btn btn-sm btn-outline-danger">Cancel Request</a>
+ 
             </td>
         </tr>
     <?php endforeach ?>

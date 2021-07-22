@@ -8,7 +8,7 @@
 
     
 
-    $statement = $pdo->prepare("SELECT document_request.request_number, document_request.request_date, student_info.student_number, student_info.full_name, student_info.course, student_info.year_of_enrollment, documents.document_name, documents.requirements, document_request.remarks, document_request.upfile, document_request.upfile_name FROM document_request INNER JOIN student_info ON document_request.student_number = student_info.student_number JOIN documents ON document_request.document_id = documents.document_id WHERE document_request.request_number = :request_get");
+    $statement = $pdo->prepare("SELECT document_request.request_number, document_request.request_date, student_info.student_number, student_info.full_name, student_info.course, student_info.year_of_enrollment, documents.document_name, documents.requirements, document_request.remarks, document_request.upfile, document_request.upfile_name, document_request.date_approved, document_request.date_released FROM document_request INNER JOIN student_info ON document_request.student_number = student_info.student_number JOIN documents ON document_request.document_id = documents.document_id WHERE document_request.request_number = :request_get");
     $statement->bindValue(':request_get', $request_get);
     $statement->execute();
     $requests = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -31,6 +31,8 @@
       <th scope="col">Requirements</th>
       <th scope="col">Remarks</th>
       <th scope="col">Attachments</th>
+      <th scope="col">Date Approved</th>
+      <th scope="col">Date of Release</th>
     </tr>
   </thead>
   <tbody>
@@ -64,9 +66,12 @@
                 <?php endfor;
                  else: ?>
                      <i>No Attachments</i>
-                <?php
-                endif ?>
-            </td>
+            <?php
+            endif ?>
+        </td>
+            
+        <td><?php echo $request['date_approved']?></td>
+        <td><?php echo $request['date_released']?></td>
         </tr>
     <?php endforeach ?>
 

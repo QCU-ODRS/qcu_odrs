@@ -8,12 +8,12 @@
 //search algorithm
 $search = $_GET['search'] ?? '';
 if($search) {
-  $statement = $pdo->prepare("SELECT document_request.request_number, document_request.request_date, student_info.student_number, student_info.full_name, student_info.course, documents.document_names FROM document_request INNER JOIN student_info ON document_request.student_number = student_info.student_number JOIN documents ON document_request.document_id = documents.document_id WHERE (student_info.student_number LIKE :student_number OR student_info.full_name LIKE :full_name OR documents.document_name LIKE :document_name) AND document_request.request_status LIKE 'PENDING' ORDER BY document_request.request_number DESC");
+  $statement = $pdo->prepare("SELECT document_request.request_number, document_request.request_date, student_info.student_number, student_info.last_name, documents.document_names FROM document_request INNER JOIN student_info ON document_request.student_number = student_info.student_number JOIN documents ON document_request.document_id = documents.document_id WHERE (student_info.student_number LIKE :student_number OR student_info.full_name LIKE :full_name OR documents.document_name LIKE :document_name) AND document_request.request_status LIKE 'PENDING' ORDER BY document_request.request_number DESC");
   $statement->bindValue(':document_name', "%$search%");
   $statement->bindValue(':student_number', "%$search%");
   $statement->bindValue(':full_name', "%$search%");
 } else {
-  $statement = $pdo->prepare("SELECT document_request.request_number, document_request.request_date, student_info.student_number, student_info.full_name, student_info.course, documents.document_name FROM document_request INNER JOIN student_info ON document_request.student_number = student_info.student_number JOIN documents ON document_request.document_id = documents.document_id WHERE document_request.request_status LIKE 'PENDING' ORDER BY document_request.request_number DESC");
+  $statement = $pdo->prepare("SELECT document_request.request_number, document_request.request_date, student_info.student_number, student_info.last_name,  documents.document_name FROM document_request INNER JOIN student_info ON document_request.student_number = student_info.student_number JOIN documents ON document_request.document_id = documents.document_id WHERE document_request.request_status LIKE 'PENDING' ORDER BY document_request.request_number DESC");
 }
 $statement->execute();
 $requests = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -51,8 +51,7 @@ $requests = $statement->fetchAll(PDO::FETCH_ASSOC);
       <th scope="col">#</th>
       <th scope="col">Date</th>
       <th scope="col">Student Number</th>
-      <th scope="col">Full Name</th>
-      <th scope="col">Course</th>
+      <th scope="col">Last Name</th>
       <th scope="col">Document</th>
       <th scope="col">Action</th>
     </tr>
@@ -64,11 +63,10 @@ $requests = $statement->fetchAll(PDO::FETCH_ASSOC);
         <th scope="row"><?php echo $i + 1 ?></th>
         <td><?php echo $request['request_date']?></td>
         <td><?php echo $request['student_number']?></td>
-        <td><?php echo $request['full_name']?></td>
-        <td><?php echo $request['course']?></td>
+        <td><?php echo $request['last_name']?></td>
         <td><?php echo $request['document_name']?></td>
         <td>
-        <a href="view.php?request_number=<?php echo $request['request_number'] ?>"  class="btn btn-sm btn-outline-primary">View</a>
+        <a href="view.php?request_number=<?php echo $request['request_number'] ?>"  class="btn btn-sm btn-outline-primary">View Details</a>
         </td>
       </tr>
     <?php endforeach ?>
