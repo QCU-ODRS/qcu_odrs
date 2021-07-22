@@ -48,8 +48,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if($input['student_number'] == $requests[0]['student_number']){    
             if($input['last_name'] == $requests[0]['last_name']){    
                 if(empty($errors)){
+                    // echo '<pre>';
+                    // var_dump($_POST);
+                    // echo '</pre>';
+                    // exit;
+                    $date_created = $input['date_created'];
                     //prepare the query and the variable
-                        $statement = $pdo->prepare("INSERT INTO accounts (student_number, acc_pass, date_created) VALUES (:student_number, :acc_password, :date_created)");
+                    $statement = $pdo->prepare("INSERT INTO accounts (student_number, acc_pass, date_created) VALUES (:student_number, :acc_password, :date_created)");
                     //bind values to placeholders
                     $statement->bindValue(':student_number', $student_number);
                     $statement->bindValue(':acc_password', $acc_password);
