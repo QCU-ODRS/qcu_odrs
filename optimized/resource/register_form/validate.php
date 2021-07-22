@@ -1,6 +1,7 @@
 <?php
 $student_number = $_POST['student_number'];
 $acc_password = $_POST['acc_password'];
+$confirm_pass = $_POST['confirm_pass'];
 $last_name = $_POST['last_name'];
 $first_name = $_POST['first_name'];
 $middle_name = $_POST['middle_name'];
@@ -19,16 +20,19 @@ if (!$first_name) {
 if (!$middle_name) {
     $errors[] = 'Middle Name is required';
 }
-if ($course != 'default') {
+if ($course == 'default') {
     $errors[] = 'Course is required';
 }
 if (!$year_of_enrollment) {
     $errors[] = 'Year of Admission is required';
 }
-// if (!$password) {
-//     $errors[] = 'Password is Required';
-// }
-// if ($acc_password != $confirm_pass) {
-//     $errors[] = 'Passwords must match';
-// }
+if (!$acc_password) {
+    $errors[] = 'Password is Required';
+}
+if (!$confirm_pass) {
+    $errors[] = 'Confirmed password is Required';
+}
+if ($acc_password != $confirm_pass) {
+    $errors[] = 'Passwords must match';
+}
 ?>

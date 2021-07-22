@@ -37,8 +37,14 @@
     <div>
     <select class="form-select" name="course">
         <option selected value ="default">--Select One--</option>
-        <option value="Bachelor of Science in Information Technology">Bachelor of Science in Information Technology</option>
-        <option value="Bachelor of Science in Accountancy">Bachelor of Science in Accountancy</option>
+        <option value="BSIT">Bachelor of Science in Information Technology</option>
+        <option value="BSENT">Bachelor of Science in Entrepreneurship</option>
+        <option value="BSEE">Bachelor of Science in Electronic Engineering</option>
+        <option value="BSIE">Bachelor of Science in Industrial Engineering</option>
+        <option value="BSA">Bachelor of Science in Accountancy</option>
+        <option value="SHS">Senior High School</option>
+        <option value="GENED">General Education</option>
+        <option value="TECHVOC">Technical Vocational</option>
     </select>
     </div>
     <label>Year of Admission</label>
