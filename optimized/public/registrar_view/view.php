@@ -21,7 +21,7 @@ $requests = $statement->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <?php include_once "../../resource/opt2/nav.php";?>
 <h1>DETAILS<?php echo ' OF REQUEST#'.$request_get?></h1>
-<table class="table">
+<table class="table" style="position: absolute; width: 1825px; left: 40px; top: 300px; filter: drop-shadow(10px 10px 2px rgba(0, 0, 0, 0.25)); background-color: #87CEEB; text-align: center; background-color: #87CEEB;">
   <thead class="table-dark">
     <tr>
       <th scope="col">Date</th>
