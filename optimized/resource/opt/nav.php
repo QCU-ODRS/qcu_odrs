@@ -21,7 +21,7 @@
         <a class="nav-link" href="../for_release_list.php">For-Release List</a>
       </li>
       <li class="nav-item">
-      <a class="nav-link disabled" href=""><?php echo $_SESSION['student_number'];
+      <a class="nav-link disabled" href=""><?php echo $_SESSION['user'];
         ?></a>
       </li>
       <li class="nav-item">

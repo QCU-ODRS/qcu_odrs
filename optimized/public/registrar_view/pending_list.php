@@ -37,7 +37,6 @@ $requests = $statement->fetchAll(PDO::FETCH_ASSOC);
 <body>
 <?php include_once "../../resource/opt2/nav.php"; ?> 
 <h1 style="position: absolute; left: 40px; top: 180px;">PENDING REQUESTS</h1>
-
 <form class="form">
   <div class="input-group mb-3">
     <input type="text" class="form-control searchbar" style="position: absolute; left: 40px; top: 175px; width: 1726px; color: #000000; filter: drop-shadow(0px 5px 2px rgba(0, 0, 0, 0.25)); color: #000000;" placeholder="Search Pending Requests" name="search" value="<?php echo $search?>">

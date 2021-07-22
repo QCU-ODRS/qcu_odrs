@@ -7,7 +7,6 @@ $errors = [];
 $upfile ='';
 $upfile_name = '';
 $request_status = 'PENDING';
-
 require_once "../../resource/opt1/database.php";
 
 $id =$_GET['request_number'] ?? null;

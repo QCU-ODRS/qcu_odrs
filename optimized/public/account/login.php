@@ -33,35 +33,38 @@
                     if($_POST['student_number'] == 'admin'){
                         $status = 'not_student';
                     }
-                   $query = "SELECT * FROM accounts WHERE student_number = :student_number AND acc_pass = :acc_pass";  
+                   $query = "SELECT accounts.student_number, accounts.acc_pass, student_info.full_name FROM accounts JOIN student_info ON accounts.student_number = student_info.student_number WHERE accounts.student_number = :student_number AND accounts.acc_pass = :acc_pass";  
                    $statement = $connect->prepare($query);
                    $statement->bindValue(':student_number',$_POST['student_number']);
                    $statement->bindValue(':acc_pass',$_POST['acc_pass']);
                    $statement->execute();
-                //    $log = $statement->fetchAll(PDO::FETCH_ASSOC); 
+                   $logs = $statement->fetchAll(PDO::FETCH_ASSOC);
                    $count = $statement->rowCount(); 
-                    // echo '<pre>';
-                    // var_dump($log);
-                    // echo '</pre>';
-                    // exit;
-                   if($count > 0)  
-                   {  
-                        $_SESSION['login'] === true;
-                        $_SESSION["student_number"] = $_POST["student_number"];
-                        if($status == 'student'){
-                            header("location:../student_view/student_dashboard.php");
-                            die();
+                   foreach($logs as $log){
+                            // echo '<pre>';
+                            // var_dump($log);
+                            // echo '</pre>';
+                            // exit;
+                        if($count > 0)  
+                        {  
+                                $_SESSION['login'] === true;
+                                $_SESSION["student_number"] = $_POST["student_number"];
+                                $_SESSION['user'] = $log['full_name'];
+                                if($status == 'student'){
+                                    header("location:../student_view/student_dashboard.php");
+                                    die();
+                                }
+                                elseif($status == 'not_student'){
+                                    header("location:../registrar_view/dashboard.php");
+                                    die();
+                                }
+                                
+                        }  
+                        else  
+                        {  
+                                $errors[] = 'Invalid Student Number or Password';  
                         }
-                        elseif($status == 'not_student'){
-                            header("location:../registrar_view/dashboard.php");
-                            die();
-                        }
-                        
-                   }  
-                   else  
-                   {  
-                        $errors[] = 'Invalid Student Number or Password';  
-                   }  
+                    } 
               }
          }
          else{
@@ -70,7 +73,7 @@
     }  
     catch(PDOException $error)  
     {  
-        echo $message = $error->getMessage();  
+        $errors[] = $error->getMessage();  
     }  
 
     require_once "../../resource/opt1/header.php";
