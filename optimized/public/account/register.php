@@ -2,7 +2,7 @@
     require_once "../../resource/opt/database.php";
 
 
-    $errors =[];
+    $errors = [];
 
     $student_number ='';
     $acc_password ='';
@@ -14,36 +14,70 @@
     $year_of_enrollment ='';
     $date_created = date('Y-M-d');
 
-//check if the information is posting
-echo '<pre>';
-var_dump($_POST);
-echo '</pre>';
+    
 
 //make sure that the request method is 'post'
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   //apply validate script
   require_once "../../resource/register_form/validate.php";
-//make sure that there are no errors
-    if(empty($errors)){
-//prepare the query and the variable
-    $statement = $pdo->prepare("INSERT INTO student info (student_number, last_name, first_name, middle_name, course, year_of_enrollment, date_created, acc_password, confirm_pass) VALUES (:student_number, :acc_password, :last_name, :first_name, :middle_name, :course, :year_e, :date_c, :acc_password, :confirm_pass)");
-//bind values to placeholders
-$statement->bindValue(':student_number', $student_number);
-$statement->bindValue(':acc_password', $acc_password);
-$statement->bindValue(':confirm_pass', $confirm_pass);
-$statement->bindValue(':last_name', $last_name);
-$statement->bindValue(':first_name', $first_name);
-$statement->bindValue(':middle_name', $middle_name);
-$statement->bindValue(':course', $course);
-$statement->bindValue(':year_e', $year_of_enrollment);
-$statement->bindValue(':date_c', $date_created);
+  //check if the information is posting
+    // echo '<pre>';
+    // var_dump($_POST);
+    // echo '</pre>';
+    // exit;
+  $student_number = $_POST['student_number'];
+    $q = $pdo->prepare("SELECT * FROM accounts WHERE student_number = :student_number");
+    $q->bindValue(':student_number', $student_number);
+    $q->execute();
+    $check = $q->fetchAll(PDO::FETCH_ASSOC);
+
+    if(empty($check)){
+        // echo '<pre>';
+        // var_dump($check);
+        // echo '</pre>';
+        // exit;
+        $query = $pdo->prepare("SELECT * FROM student_info WHERE student_number = :student_number");
+        $query->bindValue(':student_number', $student_number);
+        $query->execute();
+        $requests = $query->fetchAll(PDO::FETCH_ASSOC);
+        $input = $_POST;
+        // echo '<pre>';
+        // var_dump($requests);
+        // echo '</pre>';
+        // exit;
+        if($input['student_number'] == $requests[0]['student_number']){    
+            if($input['last_name'] == $requests[0]['last_name']){    
+                if(empty($errors)){
+                    //prepare the query and the variable
+                        $statement = $pdo->prepare("INSERT INTO accounts (student_number, acc_pass, date_created) VALUES (:student_number, :acc_password, :date_created)");
+                    //bind values to placeholders
+                    $statement->bindValue(':student_number', $student_number);
+                    $statement->bindValue(':acc_password', $acc_password);
+                    $statement->bindValue(':date_created', $date_created);
+                    $statement->execute();
+                    //go back to dashboard
+                    header('Location: login.php');
+                        }
+                    }
+            }
+            else{
+                $errors[] = 'Account already exists';
+            }
+        }
 
 
-$statement->execute();
-//go back to dashboard
-header('Location: login.php');
+
+
     }
-}
+    else{
+        $errors[] = 'Account already exists';
+    }
+    
+    
+
+
+//make sure that there are no errors
+    
 
     require_once "../../resource/opt/header.php";
 

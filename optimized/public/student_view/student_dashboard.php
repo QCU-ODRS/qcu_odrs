@@ -28,7 +28,7 @@ $requests = $statement->fetchAll(PDO::FETCH_ASSOC);
 
 
 <!-- content -->
-<h1>CURRENT REQUESTS</h1>
+<h1>ACTIVE REQUESTS</h1>
 <!-- new request button -->
 <p>
   <a href="create.php" class="btn btn-success">Add Request</a>
