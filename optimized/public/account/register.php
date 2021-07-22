@@ -62,6 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             // echo '</pre>';
                             // exit;
                             $date_created = $input['date_created'];
+                            $hash = password_hash($acc_password, PASSWORD_DEFAULT);
                             //prepare the query and the variable
                             $statement = $pdo->prepare("INSERT INTO accounts (student_number, acc_pass, date_created) VALUES (:student_number, :acc_password, :date_created)");
                             //bind values to placeholders
