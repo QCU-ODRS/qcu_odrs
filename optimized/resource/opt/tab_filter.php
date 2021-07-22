@@ -13,28 +13,28 @@
                 <div class="column RequestsList">
                     <div class="content">
                         <?php
-                            include_once "requestlist_table.php";
+                            //include_once "requestlist_table.php";
                         ?>
                     </div>
                 </div>
                 <div class="column PendingList">
                     <div class="content">
                         <?php
-                            include_once "pendinglist_table.php";
+                            //include_once "pendinglist_table.php";
                         ?>
                     </div>
                 </div>
                 <div class="column In-ProcessList">
                     <div class="content">
                         <?php
-                            include_once "in-processlist_table.php";
+                            //include_once "in-processlist_table.php";
                         ?>
                     </div>
                 </div>
                 <div class="column ArchivedList">
                     <div class="content">
                         <?php
-                            include_once "archivedlist_table.php";
+                            //include_once "archivedlist_table.php";
                         ?>
                     </div>
                 </div>    

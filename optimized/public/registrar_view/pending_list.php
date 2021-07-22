@@ -1,6 +1,6 @@
 <?php
 //showing request records
-
+session_start();
 
 
     require_once "../../resource/opt2/database.php";
@@ -27,7 +27,14 @@ $requests = $statement->fetchAll(PDO::FETCH_ASSOC);
 // var_dump($requests);
 // echo '</pre>';
 ?>
-
+    <!-- <style>
+    <?php
+        //include "../../resource/CssJs/style.css";
+      ?>
+    </style> -->
+    <title>Pending List</title>
+</head>
+<body>
 <h1 style="position: absolute; left: 40px; top: 180px;">PENDING REQUESTS</h1>
 
 <form class="form">

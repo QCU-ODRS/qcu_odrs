@@ -1,6 +1,6 @@
 <?php
 //this is the view of listed documents
-
+session_start();
 
 
 
