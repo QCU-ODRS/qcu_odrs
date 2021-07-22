@@ -28,13 +28,13 @@ $requests = $statement->fetchAll(PDO::FETCH_ASSOC);
 // echo '</pre>';
 ?>
 
-<h1>RELEASING REQUESTS</h1>
+<h1 style="position: absolute; left: 40px; top: 180px;">RELEASING REQUESTS</h1>
 
 <form>
   <div class="input-group mb-3">
-    <input type="text" class="form-control" placeholder="Search Pending Requests" name="search" value="<?php echo $search?>">
+    <input type="text" class="form-control searchbar" style="position: absolute; left: 40px; top: 175px; width: 1726px; color: #000000; filter: drop-shadow(0px 5px 2px rgba(0, 0, 0, 0.25)); color: #000000;" placeholder="Search Pending Requests" name="search" value="<?php echo $search?>">
     <div class="input-group-append">
-      <button class="btn btn-outline-secondary" type="submit">Search</button>
+      <button class="btn btn-outline-secondary btnsearch" style="position: absolute; top: 175px; margin-left: 1767px; width: 100px; filter: drop-shadow(5px 5px 2px rgba(0, 0, 0, 0.25)); color: #000000;" type="submit">Search</button>
     </div>
 </div>
 
