@@ -1,6 +1,6 @@
 <?php
 //showing request records
-session_start();
+    session_start();
 
 
     require_once "../../resource/opt2/database.php";

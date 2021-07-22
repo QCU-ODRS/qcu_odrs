@@ -11,7 +11,7 @@
   <form action="" method="post" enctype="multipart/form-data"> 
     <div class="form-group">
       <label>Student Number</label>
-      <input type="text" class="form-control" name="student_number" placeholder="Enter Student Number" value="<?php echo $student_number ?>">
+      <input type="text" class="form-control" placeholder="Enter Student Number" value="<?php echo $student_number ?>" disabled>
     </div>
     <label>Document Name</label>
     <select class="form-select" aria-label="Default select example" name="document_id" onchange="change_value()">

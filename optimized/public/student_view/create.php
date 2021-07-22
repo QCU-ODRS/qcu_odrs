@@ -6,7 +6,7 @@ session_start();
 //error array for blank fields validation
 $errors = [];
 //empty variable placeholders for empty fields
-$student_number = '';
+$student_number = $_SESSION['student_number'];
 $document_id = '';
 $upfile = '';
 $upfile_name = '';
@@ -34,7 +34,6 @@ require_once "../../resource/opt1/database.php";
 //make sure that the request method is 'post'
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   //empty variable placeholders for empty fields
-  $student_number = $_POST['student_number'];
   $document_id = $_POST['document_id'];
   $request_date = date('Y-m-d');
   $request_status = 'PENDING';

@@ -3,7 +3,6 @@
 session_start();
 
 
-
 require_once "../../resource/opt2/database.php";
 include_once "../../resource/opt2/header.php";
 

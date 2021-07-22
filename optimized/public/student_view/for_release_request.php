@@ -7,12 +7,14 @@ session_start();
     
 $search = $_GET['search'] ?? '';
 if($search) {
-  $statement = $pdo->prepare("SELECT document_request.request_number, document_request.request_date, student_info.student_number, student_info.full_name, documents.document_name, documents.requirements, document_request.remarks FROM document_request INNER JOIN student_info ON document_request.student_number = student_info.student_number JOIN documents ON document_request.document_id = documents.document_id WHERE (student_info.student_number LIKE :student_number OR student_info.full_name LIKE :full_name OR documents.document_name LIKE :document_name) AND document_request.request_status LIKE 'RELEASE' ORDER BY document_request.request_number DESC");
+  $statement = $pdo->prepare("SELECT document_request.request_number, document_request.request_date, student_info.student_number, student_info.full_name, documents.document_name, documents.requirements, document_request.remarks FROM document_request INNER JOIN student_info ON document_request.student_number = student_info.student_number JOIN documents ON document_request.document_id = documents.document_id WHERE (student_info.full_name LIKE :full_name OR documents.document_name LIKE :document_name) AND document_request.request_status LIKE 'RELEASE' AND student_info.student_number = :student_number ORDER BY document_request.request_number DESC");
   $statement->bindValue(':document_name', "%$search%");
   $statement->bindValue(':student_number', "%$search%");
   $statement->bindValue(':full_name', "%$search%");
+  $statement->bindValue(':student_number', $_SESSION['student_number']);
 } else {
-  $statement = $pdo->prepare("SELECT document_request.request_number, document_request.request_date, student_info.student_number, student_info.full_name, documents.document_name, documents.requirements, document_request.remarks FROM document_request INNER JOIN student_info ON document_request.student_number = student_info.student_number JOIN documents ON document_request.document_id = documents.document_id WHERE document_request.request_status LIKE 'RELEASE' ORDER BY document_request.request_number DESC");
+  $statement = $pdo->prepare("SELECT document_request.request_number, document_request.request_date, student_info.student_number, student_info.full_name, documents.document_name, documents.requirements, document_request.remarks FROM document_request INNER JOIN student_info ON document_request.student_number = student_info.student_number JOIN documents ON document_request.document_id = documents.document_id WHERE document_request.request_status LIKE 'RELEASE' AND student_info.student_number = :student_number ORDER BY document_request.request_number DESC");
+  $statement->bindValue(':student_number', $_SESSION['student_number']);
 }
 $statement->execute();
 $requests = $statement->fetchAll(PDO::FETCH_ASSOC);
