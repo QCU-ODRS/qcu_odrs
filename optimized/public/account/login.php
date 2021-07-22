@@ -33,10 +33,10 @@
                     if($_POST['student_number'] == 'admin'){
                         $status = 'not_student';
                     }
-                   $query = "SELECT accounts.student_number, accounts.acc_pass, student_info.full_name FROM accounts JOIN student_info ON accounts.student_number = student_info.student_number WHERE accounts.student_number = :student_number AND accounts.acc_pass = :acc_pass";  
+                    
+                   $query = "SELECT accounts.student_number, accounts.acc_pass, student_info.full_name FROM accounts JOIN student_info ON accounts.student_number = student_info.student_number WHERE accounts.student_number = :student_number";
                    $statement = $connect->prepare($query);
                    $statement->bindValue(':student_number',$_POST['student_number']);
-                   $statement->bindValue(':acc_pass',$_POST['acc_pass']);
                    $statement->execute();
                    $logs = $statement->fetchAll(PDO::FETCH_ASSOC);
                    $count = $statement->rowCount(); 
@@ -46,7 +46,8 @@
                             // echo '</pre>';
                             // exit;
                         if($count > 0)  
-                        {  
+                        {       
+                            if(password_verify($_POST['acc_pass'], $log['acc_pass'])){
                                 $_SESSION['login'] === true;
                                 $_SESSION["student_number"] = $_POST["student_number"];
                                 $_SESSION['user'] = $log['full_name'];
@@ -58,8 +59,9 @@
                                     header("location:../registrar_view/dashboard.php");
                                     die();
                                 }
-                                
-                        }  
+                            }
+                            
+                        }
                         else  
                         {  
                                 $errors[] = 'Invalid Student Number or Password';  

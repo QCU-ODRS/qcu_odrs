@@ -4,7 +4,7 @@ session_start();
 
 
 //PDO database connection
-require_once "../../opt/database.php";
+require_once "../../../resource/opt/database.php";
 
 //store post value
 $id =$_POST['document_id'] ?? null;

@@ -67,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             $statement = $pdo->prepare("INSERT INTO accounts (student_number, acc_pass, date_created) VALUES (:student_number, :acc_password, :date_created)");
                             //bind values to placeholders
                             $statement->bindValue(':student_number', $student_number);
-                            $statement->bindValue(':acc_password', $acc_password);
+                            $statement->bindValue(':acc_password', $hash);
                             $statement->bindValue(':date_created', $date_created);
                             $statement->execute();
                             //go back to dashboard
