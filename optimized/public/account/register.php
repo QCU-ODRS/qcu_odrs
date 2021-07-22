@@ -13,24 +13,27 @@
     $course ='';
     $year_of_enrollment ='';
     $date_created = date('Y-M-d');
-
+    $check = [];
     
 
 //make sure that the request method is 'post'
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  //apply validate script
-  require_once "../../resource/register_form/validate.php";
-  //check if the information is posting
+    //apply validate script
+    require_once "../../resource/register_form/validate.php";
+    //check if the information is posting
     // echo '<pre>';
     // var_dump($_POST);
     // echo '</pre>';
     // exit;
-  $student_number = $_POST['student_number'];
+    $student_number = $_POST['student_number'];
     $q = $pdo->prepare("SELECT * FROM accounts WHERE student_number = :student_number");
     $q->bindValue(':student_number', $student_number);
     $q->execute();
     $check = $q->fetchAll(PDO::FETCH_ASSOC);
-
+    // echo '<pre>';
+    // var_dump($check);
+    // echo '</pre>';
+    // exit;
     if(empty($check)){
         // echo '<pre>';
         // var_dump($check);
@@ -42,51 +45,53 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $requests = $query->fetchAll(PDO::FETCH_ASSOC);
         $input = $_POST;
         $request = [];
+        
         if(!empty($requests)){
             foreach($requests as $req){
-                $request[] = $req;
-            }
+            
         
-        echo '<pre>';
-        var_dump($requests);
-        echo '</pre>';
-        exit;
-            if($input['student_number'] == $request['student_number']){    
-                if($input['last_name'] == $request['last_name']){    
-                    if(empty($errors)){
-                        // echo '<pre>';
-                        // var_dump($_POST);
-                        // echo '</pre>';
-                        // exit;
-                        $date_created = $input['date_created'];
-                        //prepare the query and the variable
-                        $statement = $pdo->prepare("INSERT INTO accounts (student_number, acc_pass, date_created) VALUES (:student_number, :acc_password, :date_created)");
-                        //bind values to placeholders
-                        $statement->bindValue(':student_number', $student_number);
-                        $statement->bindValue(':acc_password', $acc_password);
-                        $statement->bindValue(':date_created', $date_created);
-                        $statement->execute();
-                        //go back to dashboard
-                        header('Location: login.php');
-                            }
+        // echo '<pre>';
+        // var_dump($request);
+        // echo '</pre>';
+        // exit;
+                if($input['student_number'] == $req['student_number']){    
+                    if($input['last_name'] == $req['last_name']){    
+                        if(empty($errors)){
+                            // echo '<pre>';
+                            // var_dump($_POST);
+                            // echo '</pre>';
+                            // exit;
+                            $date_created = $input['date_created'];
+                            //prepare the query and the variable
+                            $statement = $pdo->prepare("INSERT INTO accounts (student_number, acc_pass, date_created) VALUES (:student_number, :acc_password, :date_created)");
+                            //bind values to placeholders
+                            $statement->bindValue(':student_number', $student_number);
+                            $statement->bindValue(':acc_password', $acc_password);
+                            $statement->bindValue(':date_created', $date_created);
+                            $statement->execute();
+                            //go back to dashboard
+                            header('Location: login.php');
                         }
-                }
-                else{
-                    $errors[] = 'Account already exists';
+                    }
+                    else
+                    {
+                    $errors[] = 'Records does not match';
+                    }
                 }
             }
-
         }
-        else{
+        else
+        {
             $errors[] = 'Student record not found';
         }
 
     }
-    else{
+    else
+    {
         $errors[] = 'Account already exists';
     }
     
-    
+}    
 
 
 //make sure that there are no errors
