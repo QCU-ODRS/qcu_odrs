@@ -39,7 +39,7 @@ $requests = $statement->fetchAll(PDO::FETCH_ASSOC);
 
     <body>
         <?php
-            require_once("../../resource/opt/tab_filter.php");
+            //require_once("../../resource/opt/tab_filter.php");
             include_once "../../resource/opt2/request_view_table.php";
         ?>
         <hr>
