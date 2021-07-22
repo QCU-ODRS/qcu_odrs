@@ -21,7 +21,11 @@
         <a class="nav-link" href="for_release_request.php">For Release</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link disabled" href="#">Logout</a>
+        <?php echo $_SESSION['student_number'];
+        ?>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="../account/logout.php">Logout</a>
       </li>
     </ul>
   </div>
