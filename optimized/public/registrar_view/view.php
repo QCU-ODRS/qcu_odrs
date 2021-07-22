@@ -1,5 +1,6 @@
 <?php
 // user click table row 
+session_start();
 
 
 
@@ -19,6 +20,9 @@ $requests = $statement->fetchAll(PDO::FETCH_ASSOC);
 
 
 ?>
+    <title>Request Details</title>
+  </head>
+  <body>
 <?php include_once "../../resource/opt2/nav.php";?>
 <h1>DETAILS<?php echo ' OF REQUEST#'.$request_get?></h1>
 <table class="table" style="position: absolute; width: 1825px; left: 40px; top: 300px; filter: drop-shadow(10px 10px 2px rgba(0, 0, 0, 0.25)); background-color: #87CEEB; text-align: center; background-color: #87CEEB;">

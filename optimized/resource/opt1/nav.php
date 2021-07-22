@@ -21,11 +21,11 @@
         <a class="nav-link" href="for_release_request.php">For Release</a>
       </li>
       <li class="nav-item">
-        <?php echo $_SESSION['student_number'];
-        ?>
+      <a class="nav-link disabled" href=""><?php echo $_SESSION['student_number'];
+        ?></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="../account/logout.php">Logout</a>
+        <a class="nav-link" href="../account/logout.php" onclick="return confirm('Are you sure?')">Logout</a>
       </li>
     </ul>
   </div>

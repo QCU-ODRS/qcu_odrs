@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 
 $errors = [];
@@ -90,9 +91,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
 require_once "../../resource/opt1/header.php";
-require_once "../../resource/opt1/nav.php";
-?>
 
+?>
+<title>Edit Attachments</title>
+  </head>
+  <body>
+<?php require_once "../../resource/opt1/nav.php";?>
 <h1>UPDATE REQUEST&nbsp;<b><?php echo $requests['request_number'] ?></b> </h1>
   <form action="" method="post" enctype="multipart/form-data">
     <br />

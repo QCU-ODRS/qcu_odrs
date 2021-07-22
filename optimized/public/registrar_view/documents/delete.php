@@ -1,6 +1,6 @@
 <?php
 //a function that deletes a document
-
+session_start();
 
 
 //PDO database connection

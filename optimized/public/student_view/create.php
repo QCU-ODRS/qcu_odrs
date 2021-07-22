@@ -1,5 +1,6 @@
 <?php
 //Student Creates Requests with validation of 1
+session_start();
 
 
 //error array for blank fields validation
@@ -98,13 +99,16 @@ function random_string($n){
 }
 //refer header
 require_once "../../resource/opt1/header.php";
-//refer navigation bar
+
+
+?>
+<title>New Request</title>
+  </head>
+  <body>
+
+<?php //refer navigation bar
 require_once "../../resource/opt1/nav.php";
 ?>
-
-
-
-
 
 
 <!-- contents -->

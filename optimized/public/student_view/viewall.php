@@ -1,9 +1,12 @@
 <?php
+
+session_start();
+
     require_once "../../resource/opt1/database.php";
     require_once "../../resource/opt1/header.php";
 
 
-    require_once "../../resource/opt1/nav.php";
+    
     $request_get = $_GET['request_number'];
 
     
@@ -17,6 +20,10 @@
     // echo var_dump($requests);
     // echo '</pre>';
 ?>
+<title>Request Details</title>
+  </head>
+  <body>
+<?php require_once "../../resource/opt1/nav.php";?>
 <!-- content -->
 <h1>REQUEST DETAILS</h1>
 <table class="table">

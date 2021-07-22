@@ -5,7 +5,7 @@ session_start();
 
     require_once "../../resource/opt2/database.php";
     include_once "../../resource/opt2/header.php";
-    include_once "../../resource/opt2/nav.php"; 
+    
 $view = 'view.php?request_number=';
 $status = 'PENDING';
 $search = $_GET['search'] ?? '';
@@ -35,6 +35,7 @@ $requests = $statement->fetchAll(PDO::FETCH_ASSOC);
     <title>Pending List</title>
 </head>
 <body>
+<?php include_once "../../resource/opt2/nav.php"; ?> 
 <h1 style="position: absolute; left: 40px; top: 180px;">PENDING REQUESTS</h1>
 
 <form class="form">

@@ -1,6 +1,7 @@
 <?php
 
 // user click table row -> action: reject
+session_start();
 
 
 
@@ -46,6 +47,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 
 <?php include_once "../../resource/opt2/header.php"; ?>
+<title>Return Request</title>
+  </head>
+  <body>
 <?php include_once "../../resource/opt2/nav.php"; ?>
 
 <h1>REJECT REQUEST#<b><?php echo $id ?></b></h1>

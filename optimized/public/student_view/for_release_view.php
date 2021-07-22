@@ -1,4 +1,7 @@
 <?php
+
+session_start();
+
     require_once "../../resource/opt1/database.php";
     require_once "../../resource/opt1/header.php";
 

@@ -1,7 +1,10 @@
 <?php
+
+session_start();
+
     require_once "../../resource/opt1/database.php";
     include_once "../../resource/opt1/header.php";
-    include_once "../../resource/opt1/nav.php"; 
+    
 $search = $_GET['search'] ?? '';
 if($search) {
   $statement = $pdo->prepare("SELECT document_request.request_number, document_request.request_date, student_info.student_number, student_info.full_name, documents.document_name, documents.requirements, document_request.remarks FROM document_request INNER JOIN student_info ON document_request.student_number = student_info.student_number JOIN documents ON document_request.document_id = documents.document_id WHERE (student_info.student_number LIKE :student_number OR student_info.full_name LIKE :full_name OR documents.document_name LIKE :document_name) AND document_request.request_status LIKE 'RELEASE' ORDER BY document_request.request_number DESC");
@@ -17,7 +20,10 @@ $requests = $statement->fetchAll(PDO::FETCH_ASSOC);
 // var_dump($requests);
 // echo '</pre>';
 ?>
-
+<title>Release Requests</title>
+  </head>
+  <body>
+<?php include_once "../../resource/opt1/nav.php"; ?>
 <h1>FOR-RELEASE REQUESTS</h1>
 <p>
   <a href="create.php" class="btn btn-success">Add Request</a>

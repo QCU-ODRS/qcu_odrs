@@ -28,6 +28,9 @@ $documents = $statement->fetchAll(PDO::FETCH_ASSOC);
 
 <!-- refer header -->
 <?php include_once "../../../resource/opt/header.php"; ?>
+<title>Documents</title>
+  </head>
+  <body>
 <!-- refer navigation bar -->
 <?php include_once "../../../resource/opt/nav.php"; ?>
 

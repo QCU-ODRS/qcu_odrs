@@ -1,5 +1,6 @@
 <?php
 //showing request records
+session_start();
 
 
 
@@ -28,7 +29,10 @@ $requests = $statement->fetchAll(PDO::FETCH_ASSOC);
 // var_dump($requests);
 // echo '</pre>';
 ?>
-
+    <title>In Process</title>
+  </head>
+  <body>
+<?php require_once '../../resource/opt2/nav.php'?>
 <h1 style="position: absolute; left: 40px; top: 180px;">PROCESSING REQUESTS</h1>
 
 <form>

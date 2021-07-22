@@ -1,11 +1,11 @@
 <?php
 //showing request records
+session_start();
 
 
 
     require_once "../../resource/opt2/database.php";
     include_once "../../resource/opt2/header.php";
-    include_once "../../resource/opt2/nav.php"; 
 $search = $_GET['search'] ?? '';
 $status = 'RELEASE';
 $view = 'view2.php?request_number=';
@@ -27,7 +27,10 @@ $requests = $statement->fetchAll(PDO::FETCH_ASSOC);
 // var_dump($requests);
 // echo '</pre>';
 ?>
-
+    <title>For Release</title>
+  </head>
+  <body>
+  <?php require_once '../../resource/opt2/nav.php'?>
 <h1 style="position: absolute; left: 40px; top: 180px;">RELEASING REQUESTS</h1>
 
 <form>

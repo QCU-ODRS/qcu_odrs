@@ -1,10 +1,11 @@
 <?php
+
+session_start();
+
 //PDO database connection
     require_once "../../resource/opt1/database.php";
 //refer header
     include_once "../../resource/opt1/header.php";
-//refer navigation bar
-    include_once "../../resource/opt1/nav.php"; 
 //search algorithm
 $search = $_GET['search'] ?? '';
 if($search) {
@@ -26,8 +27,14 @@ $requests = $statement->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 
-
+<title>Pending Request</title>
+  </head>
+  <body>
 <!-- content -->
+<?php
+   //refer navigation bar
+    include_once "../../resource/opt1/nav.php"; 
+    ?>
 <h1>PENDING REQUESTS</h1>
 <!-- new request button -->
 <p>

@@ -7,6 +7,7 @@
     $message = "";  
     $status = 'student';
 
+    $errors = [];
     try  
     {  
          $connect = new PDO("mysql:host=$host; dbname=$database", $username, $password); 
@@ -59,12 +60,12 @@
                    }  
                    else  
                    {  
-                        echo $message = '<label>Wrong Data</label>';  
+                        $errors[] = 'Invalid Student Number or Password';  
                    }  
               }
          }
          else{
-             echo 'no trigger';
+             //echo 'no trigger';
          }  
     }  
     catch(PDOException $error)  
@@ -74,7 +75,9 @@
 
     require_once "../../resource/opt1/header.php";
     ?>  
- 
+     <title>QCU ODRS</title>
+  </head>
+<body>
     
     
 <h1>LOGIN</h1>
@@ -82,3 +85,5 @@
     require_once "../../resource/login/form.php";
 
 ?>
+</body>
+</html>

@@ -22,6 +22,9 @@ $requests = $statement->fetchAll(PDO::FETCH_ASSOC);
 
 
 ?>
+    <title>View Request</title>
+  </head>
+  <body>
 <?php include_once "../../resource/opt2/nav.php";?>
 <h1>DETAILS<?php echo ' OF REQUEST#'.$request_get?></h1>
 <table class="table">

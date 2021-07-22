@@ -1,6 +1,6 @@
 <?php
 //this is where you create documents
-
+session_start();
 
 //PDO database connection
 require_once "../../../resource/opt/database.php";
@@ -35,6 +35,11 @@ header('Location: documents.php');
 }
 //refer header
 include_once "../../../resource/opt/header.php";
+?>
+    <title>New Request</title>
+  </head>
+  <body>
+<?php
 //refer navigation bar
 include_once "../../../resource/opt/nav.php"; 
 ?>

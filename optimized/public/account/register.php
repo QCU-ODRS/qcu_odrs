@@ -41,37 +41,45 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $query->execute();
         $requests = $query->fetchAll(PDO::FETCH_ASSOC);
         $input = $_POST;
-        // echo '<pre>';
-        // var_dump($requests);
-        // echo '</pre>';
-        // exit;
-        if($input['student_number'] == $requests[0]['student_number']){    
-            if($input['last_name'] == $requests[0]['last_name']){    
-                if(empty($errors)){
-                    // echo '<pre>';
-                    // var_dump($_POST);
-                    // echo '</pre>';
-                    // exit;
-                    $date_created = $input['date_created'];
-                    //prepare the query and the variable
-                    $statement = $pdo->prepare("INSERT INTO accounts (student_number, acc_pass, date_created) VALUES (:student_number, :acc_password, :date_created)");
-                    //bind values to placeholders
-                    $statement->bindValue(':student_number', $student_number);
-                    $statement->bindValue(':acc_password', $acc_password);
-                    $statement->bindValue(':date_created', $date_created);
-                    $statement->execute();
-                    //go back to dashboard
-                    header('Location: login.php');
+        $request = [];
+        if(!empty($requests)){
+            foreach($requests as $req){
+                $request[] = $req;
+            }
+        
+        echo '<pre>';
+        var_dump($requests);
+        echo '</pre>';
+        exit;
+            if($input['student_number'] == $request['student_number']){    
+                if($input['last_name'] == $request['last_name']){    
+                    if(empty($errors)){
+                        // echo '<pre>';
+                        // var_dump($_POST);
+                        // echo '</pre>';
+                        // exit;
+                        $date_created = $input['date_created'];
+                        //prepare the query and the variable
+                        $statement = $pdo->prepare("INSERT INTO accounts (student_number, acc_pass, date_created) VALUES (:student_number, :acc_password, :date_created)");
+                        //bind values to placeholders
+                        $statement->bindValue(':student_number', $student_number);
+                        $statement->bindValue(':acc_password', $acc_password);
+                        $statement->bindValue(':date_created', $date_created);
+                        $statement->execute();
+                        //go back to dashboard
+                        header('Location: login.php');
+                            }
                         }
-                    }
+                }
+                else{
+                    $errors[] = 'Account already exists';
+                }
             }
-            else{
-                $errors[] = 'Account already exists';
-            }
+
         }
-
-
-
+        else{
+            $errors[] = 'Student record not found';
+        }
 
     }
     else{
@@ -88,6 +96,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
 ?>
+    <title>Register</title>
+  </head>
+  <body>
 <h1>REGISTER ACCOUNT</h1>
 
 <?php

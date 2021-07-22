@@ -1,6 +1,6 @@
 <?php
 //this is where you can update records of documents
-
+session_start();
 
 
 //PDO database connection
@@ -52,6 +52,9 @@ header('Location: documents.php');
 ?>
 <!-- refer header -->
 <?php include_once "../../../resource/opt/header.php"; ?>
+<title>Edit Document</title>
+  </head>
+  <body>
 <!-- refer navigation bar -->
 <?php include_once "../../../resource/opt/nav.php"; ?>
 <!-- content -->

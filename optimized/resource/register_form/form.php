@@ -15,12 +15,16 @@
     </div>
     <label>Password</label>
     <div>
-    <input type="password" class="form-control" name="acc_password" placeholder="Enter Password" value="<?php echo $acc_password ?>">
+    <input type="password" class="form-control" name="acc_password" id="acc_pass" placeholder="Enter Password" value="<?php echo $acc_password ?>">
+    </div>
+    <div class="mb-3">
+    <input type="checkbox" onclick="toggle_pass()">&nbsp;Show Password
     </div>
     <label>Confirm Password</label>
     <div>
     <input type="password" class="form-control" name="confirm_pass" placeholder="Confirm Password" value="<?php echo $confirm_pass ?>">
     </div>
+    
     <label>Last Name</label>
     <div>
     <input type="text" class="form-control" name="last_name" placeholder="Enter Last Name" value="<?php echo $last_name ?>">

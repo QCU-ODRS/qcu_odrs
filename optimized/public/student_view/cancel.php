@@ -1,5 +1,6 @@
 <?php
 //a function that updates status
+session_start();
 
 
 

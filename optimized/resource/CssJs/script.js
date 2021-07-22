@@ -41,3 +41,11 @@ for (var i = 0; i < btns.length; i++) {
     this.className += " active";
   });
 }
+function toggle_pass() {
+  var x = document.getElementById("acc_pass");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+} 
