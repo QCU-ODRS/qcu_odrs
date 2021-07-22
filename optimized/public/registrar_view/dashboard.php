@@ -37,7 +37,9 @@ $requests = $statement->fetchAll(PDO::FETCH_ASSOC);
             <button class="btn btn-outline-secondary btnsearch" style="position: absolute; top: 175px; margin-left: 1767px; width: 100px; filter: drop-shadow(5px 5px 2px rgba(0, 0, 0, 0.25)); color: #000000;" type="submit">Search</button>
             </div>
         </div>
-    <h1>ACTIVE REQUESTS</h1>
+
+    <body>
+        <h1 style="position: absolute; left: 40px; top: 180px;">DETAILS OF REQUEST #</h1>
         <?php
             //require_once("../../resource/opt/tab_filter.php");
             include_once "../../resource/opt2/active_table_view.php";
@@ -51,6 +53,9 @@ $requests = $statement->fetchAll(PDO::FETCH_ASSOC);
         ?>
         <?php
             // require("../../resource/opt/in-processlist_table.php");
+        ?>
+        <?php
+            //include "view.php"
         ?>
     </body>
 </html>
