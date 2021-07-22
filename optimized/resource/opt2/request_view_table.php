@@ -1,6 +1,6 @@
 <?php ?>
 </div id="request_list">
-<table class="table">
+<table class="table" style="position: absolute; width: 1825px; left: 40px; top: 300px; filter: drop-shadow(10px 10px 2px rgba(0, 0, 0, 0.25)); background-color: #87CEEB; text-align: center;">
   <thead class="table-dark">
     <tr>
       <th scope="col">#</th>
