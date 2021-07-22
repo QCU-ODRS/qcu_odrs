@@ -38,6 +38,7 @@ $requests = $statement->fetchAll(PDO::FETCH_ASSOC);
         </div>
 
     <body>
+        <h1 style="position: absolute; left: 40px; top: 180px;">DETAILS OF REQUEST #</h1>
         <?php
             //require_once("../../resource/opt/tab_filter.php");
             include_once "../../resource/opt2/request_view_table.php";
@@ -53,7 +54,7 @@ $requests = $statement->fetchAll(PDO::FETCH_ASSOC);
             // require("../../resource/opt/in-processlist_table.php");
         ?>
         <?php
-            include "view.php"
+            //include "view.php"
         ?>
     </body>
 </html>
