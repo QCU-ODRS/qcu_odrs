@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 22, 2021 at 08:27 PM
+-- Generation Time: Jul 22, 2021 at 09:32 PM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 7.4.20
 
@@ -38,10 +38,11 @@ CREATE TABLE `documents` (
 --
 
 INSERT INTO `documents` (`document_id`, `document_name`, `requirements`) VALUES
-(1, 'GRADESLIP 1st Sem SY 2020-2021', 'Registration Form'),
-(2, 'Transcript of Records - Immediate', 'Letter of Request from school or company\r\n'),
-(11, 'test', 'Req'),
-(12, 'TESTT', 'sadasdasdad');
+(13, 'TOR / Diploma', 'Year Graduated and complete address '),
+(14, 'TOR (Under Graduate)', 'Last Academic Year Attended and complete address'),
+(15, 'Grade Slip', 'Academic Year and Semester'),
+(16, 'Other Certifications', 'Office requesting the document (e.g., DSWD, CHED)'),
+(17, 'Authentication / Certified True Copy', 'Send a clear copy of the document and bring the Original Copy upon claiming');
 
 -- --------------------------------------------------------
 
@@ -62,20 +63,6 @@ CREATE TABLE `document_request` (
   `date_released` date DEFAULT NULL,
   `date_finished` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `document_request`
---
-
-INSERT INTO `document_request` (`request_number`, `student_number`, `document_id`, `request_date`, `request_status`, `remarks`, `upfile`, `upfile_name`, `date_approved`, `date_released`, `date_finished`) VALUES
-(31, '18-1825', 2, '2021-07-21', 'FINISHED', '', '../../resource/files/J4CN3GPD', 'endeavor.gif external-content.duckduckgo.com.png ', '2021-07-22', '2021-07-23', '2021-07-22'),
-(32, '18-1824', 2, '2021-07-21', 'FINISHED', 'WRong', '../../resource/files/UynKS20u', 'endeavor.gif qculogopng.png ', NULL, '2021-07-23', '2021-07-22'),
-(33, '18-1825', 12, '2021-07-21', 'FINISHED', NULL, '../../resource/files/PxdpE74U', 'endeavor.gif valorant-logo-3.png ', '2021-07-21', '2021-07-23', '2021-07-22'),
-(34, '18-1824', 12, '2021-07-22', 'CANCELLED', 'Wrong File', '../../resource/files/iKo2oAb4', 'endeavor.gif external-content.duckduckgo.com.png ', NULL, NULL, '2021-07-22'),
-(35, '18-1824', 1, '2021-07-22', 'PROCESSING', NULL, '../../resource/files/k0pK6VJm', 'endeavor.gif external-content.duckduckgo.com.png ', '2021-07-22', NULL, NULL),
-(36, '18-1825', 1, '2021-07-22', 'RELEASE', NULL, '../../resource/files/q32NfvBd', ' ', '2021-07-22', '2021-07-23', NULL),
-(37, '18-0855', 2, '2021-07-22', 'PROCESSING', NULL, '../../resource/files/nu4qBJNB', 'external-content.duckduckgo.com.png qculogopng.png ', '2021-07-22', NULL, NULL),
-(38, '18-0855', 2, '2021-07-22', 'RESUBMIT', 'Wrong documents', '../../resource/files/zk9MQxZW', 'endeavor.gif qculogopng.png ', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -168,7 +155,7 @@ ALTER TABLE `student_info`
 -- AUTO_INCREMENT for table `documents`
 --
 ALTER TABLE `documents`
-  MODIFY `document_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `document_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `document_request`

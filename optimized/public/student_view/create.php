@@ -13,7 +13,6 @@ $upfile_name = '';
 $request_date = '';
 $request_status = '';
 
-
 //SQL database connection
 $conn = new mysqli('localhost','root', '', 'qcu_ords',3306);
 $sql ="SELECT document_name, document_id FROM documents ORDER BY document_id DESC";
@@ -112,6 +111,38 @@ require_once "../../resource/opt1/nav.php";
 
 <!-- contents -->
 <h1>NEW REQUEST</h1>
+<hr>
+  <h4>Instructions:</h4>
+  <p>Please select a document and attach files. Please attach image files and document files only.</p>
+  <hr>
+  <h4>Requirements</h4>
+  <table>
+    <tr>
+      <th>Document</th>
+      <th>Requirement</th>
+    </tr>
+    <tr>
+      <td><b>TOR / Diploma</b></td>
+      <td>Year Graduated and complete address</td>
+    </tr>
+    <tr>
+      <td><b>TOR (Under Graduate)</b></td>
+      <td>Last Academic Year Attended and complete address</td>
+    </tr>
+    <tr>
+      <td><b>Grade Slip</b></td>
+      <td>Academic Year and Semester</td>
+    </tr>
+    <tr>
+      <td><b>Other Certifications</b></td>
+      <td>Office requesting the document (e.g., DSWD, CHED)</td>
+    </tr>
+    <tr>
+      <td><b>Authentication / Certified True Copy</b></td>
+      <td>Send a clear copy of the document and bring the Original Copy upon claiming</td>
+    </tr>
+  </table>
+  <hr>
 <!-- refer form -->
 <?php include_once "../../resource/opt1/form.php"; ?>
 <!-- document records (options) fetched from the database -->
@@ -129,10 +160,6 @@ require_once "../../resource/opt1/nav.php";
     <br />
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
-  <script>
-    function changeValue(){
-      Document.getElementID();
-    }
-  </script>
+  
   </body>
 </html>
