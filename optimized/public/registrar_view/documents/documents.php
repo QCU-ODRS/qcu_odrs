@@ -32,20 +32,20 @@ $documents = $statement->fetchAll(PDO::FETCH_ASSOC);
 <?php include_once "../../../resource/opt/nav.php"; ?>
 
 <!-- content -->
-  <h1>DOCUMENTS</h1>
+  <h1 style="position: absolute; left: 40px; top: 175px;">DOCUMENTS</h1>
 
 <!-- add document button -->
 <p>
-  <a href="create.php" class="btn btn-success">Add Document </a>
+  <a href="create.php" class="btn btn-success" style="position: absolute; left: 1735px; top: 175px;">Add Document </a>
 </p>
 
 
 <!-- search field -->
 <form>
   <div class="input-group mb-3">
-    <input type="text" class="searchbar form-control" placeholder="Search Documents" name="search" value="<?php echo $search?>">
+    <input type="text" class="form-control searchbar" style="position: absolute; left: 40px; top: 155px; width: 1726px; color: #000000; filter: drop-shadow(0px 5px 2px rgba(0, 0, 0, 0.25)); color: #000000;" placeholder="Search Documents" name="search" value="<?php echo $search?>">
     <div class="input-group-append">
-      <button class="btn btn-outline-secondary searchbtn" type="submit">Search</button>
+      <button class="btn btn-outline-secondary btnsearch" style="position: absolute; top: 155px; margin-left: 1767px; width: 100px; filter: drop-shadow(5px 5px 2px rgba(0, 0, 0, 0.25)); color: #000000;" type="submit">Search</button>
     </div>
 </div>
 
