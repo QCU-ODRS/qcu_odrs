@@ -21,24 +21,17 @@ include_once "../../resource/opt2/nav.php";
     </style>
     <title>Dashboard</title>
 </head>
-    <body>
-        <?php
-            require("../../resource/opt/tab_filter.php");
-        ?>
-        <hr>
-        <?php
-            // require("../../resource/opt/requestlist_table.php");
-        ?>
-        <?php
-           // require("pending_list.php");
-        ?>
-        <?php
-            // require("../../resource/opt/in-processlist_table.php");
-        ?>
-        <?php
-            // require("../../resource/opt/archivedlist_table.php");
-        ?>
+    <body style="background-color: #F7F7FF;">
+        <form>
+        <div class="input-group mb-3">
+            <input type="text" class="form-control searchbar" style="position: absolute; left: 40px; top: 175px; width: 1726px; color: #000000; filter: drop-shadow(0px 5px 2px rgba(0, 0, 0, 0.25)); color: #000000;" placeholder="Search Request List">
+            <div class="input-group-append">
+            <button class="btn btn-outline-secondary btnsearch" style="position: absolute; top: 175px; margin-left: 1767px; width: 100px; filter: drop-shadow(5px 5px 2px rgba(0, 0, 0, 0.25)); color: #000000;" type="submit">Search</button>
+            </div>
+        </div>
 
-        <script src="../../resource/CssJs/script.js"></script>
+        <?php
+            include "view.php"
+        ?>
     </body>
 </html>
