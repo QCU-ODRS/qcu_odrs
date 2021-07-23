@@ -23,6 +23,6 @@
     <label for="form-label" style="position: absolute; left: 40px; bottom: 105px;">Show Password</label>
   </div>
   <button type="submit" class="btn btn-primary" name="login" style="position: absolute; width: 125px; left: 90px; bottom: 20px;">Submit</button>
-  <a href="register.php" style="position: absolute; width: 125px; left: 225px; top: 210px; color: purple;">Register</a>
+  <a href="register.php" style="position: absolute; width: 125px; left: 225px; top: 210px; color: purple; text-decoration: none;">Register</a>
 </form>
 <br>
