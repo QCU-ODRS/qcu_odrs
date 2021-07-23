@@ -7,11 +7,11 @@ session_start();
 $student_number = $_SESSION['student_number'];
 $search = $_GET['search'] ?? '';
 if($search) {
-  $statement = $pdo->prepare("SELECT document_request.request_number, document_request.request_date, student_info.student_number, student_info.full_name, documents.document_name, documents.requirements, document_request.remarks FROM document_request INNER JOIN student_info ON document_request.student_number = student_info.student_number JOIN documents ON document_request.document_id = documents.document_id WHERE (documents.document_name LIKE :document_name) AND document_request.request_status LIKE 'RESUBMIT' AND student_info.student_number = :student_number ORDER BY document_request.request_number DESC");
+  $statement = $pdo->prepare("SELECT document_request.request_number, document_request.request_date, student_info.student_number, student_info.last_name, documents.document_name, documents.requirements, document_request.remarks FROM document_request INNER JOIN student_info ON document_request.student_number = student_info.student_number JOIN documents ON document_request.document_id = documents.document_id WHERE (documents.document_name LIKE :document_name) AND document_request.request_status LIKE 'RESUBMIT' AND student_info.student_number = :student_number ORDER BY document_request.request_number DESC");
   $statement->bindValue(':document_name', "%$search%");
   $statement->bindValue(':student_number', $student_number);
 } else {
-  $statement = $pdo->prepare("SELECT document_request.request_number, document_request.request_date, student_info.student_number, student_info.full_name, documents.document_name, documents.requirements, document_request.remarks FROM document_request INNER JOIN student_info ON document_request.student_number = student_info.student_number JOIN documents ON document_request.document_id = documents.document_id WHERE document_request.request_status LIKE 'RESUBMIT' AND student_info.student_number = :student_number ORDER BY document_request.request_number DESC");
+  $statement = $pdo->prepare("SELECT document_request.request_number, document_request.request_date, student_info.student_number, student_info.last_name, documents.document_name, documents.requirements, document_request.remarks FROM document_request INNER JOIN student_info ON document_request.student_number = student_info.student_number JOIN documents ON document_request.document_id = documents.document_id WHERE document_request.request_status LIKE 'RESUBMIT' AND student_info.student_number = :student_number ORDER BY document_request.request_number DESC");
   $statement->bindValue(':student_number', $student_number);
 }
 $statement->execute();
@@ -44,7 +44,7 @@ $requests = $statement->fetchAll(PDO::FETCH_ASSOC);
       <th scope="col">#</th>
       <th scope="col">Date</th>
       <th scope="col">Student Number</th>
-      <th scope="col">Full Name</th>
+      <th scope="col">Last Name</th>
       <th scope="col">Document</th>
       <th scope="col">Action</th>
     </tr>

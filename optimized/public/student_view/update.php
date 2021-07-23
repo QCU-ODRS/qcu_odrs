@@ -7,6 +7,8 @@ $errors = [];
 $upfile ='';
 $upfile_name = '';
 $request_status = 'PENDING';
+$purpose ='';
+$details = '';
 require_once "../../resource/opt1/database.php";
 
 $id =$_GET['request_number'] ?? null;
@@ -16,7 +18,7 @@ if (!$id){
     exit;
 }
 
-$statement = $pdo->prepare('SELECT request_number, upfile, upfile_name FROM document_request WHERE request_number = :id');
+$statement = $pdo->prepare('SELECT request_number, purpose, details, upfile, upfile_name FROM document_request WHERE request_number = :id');
 $statement->bindValue(':id', $id);
 $statement->execute();
 $requests = $statement->fetch(PDO::FETCH_ASSOC);
@@ -76,8 +78,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $upfile_name .= $name_arr[$j]." ";
       }
     }
-    $statement = $pdo->prepare("UPDATE document_request SET request_status = :stat, upfile = :upfile, upfile_name = :upfile_name WHERE request_number = :id");
+    $statement = $pdo->prepare("UPDATE document_request SET purpose = :purpose, details = :details request_status = :stat, upfile = :upfile, upfile_name = :upfile_name WHERE request_number = :id");
 
+    $statement->bindValue(':purpose', $purpose);
+    $statement->bindValue(':details', $details);
     $statement->bindValue(':stat', $request_status);
     $statement->bindValue(':upfile', $upfile);
     $statement->bindValue(':upfile_name', $upfile_name);
@@ -96,9 +100,16 @@ require_once "../../resource/opt1/header.php";
   </head>
   <body>
 <?php require_once "../../resource/opt1/nav.php";?>
-<h1>UPDATE REQUEST&nbsp;<b><?php echo $requests['request_number'] ?></b> </h1>
+<h1>UPDATE REQUEST</h1>
   <form action="" method="post" enctype="multipart/form-data">
-    <br />
+  <div class="form-group">
+      <label>Purpose</label>
+      <input type="text" class="form-control" name ="purpose" placeholder="Enter Purpose" value="<?php echo $purpose ?>">
+    </div>
+    <div class="form-group">
+      <label>Details</label>
+      <textarea class="form-control" name = "details" placeholder="Enter Details and Indications"><?php echo $details ?></textarea>
+    </div>
     <label>File/s</label>
     <div>
     <input type="file" name="upfile[]" id="upfile" class="btn btn btn-outline-dark btn-sm" multiple="multiple">

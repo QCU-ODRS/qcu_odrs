@@ -8,6 +8,8 @@ $errors = [];
 //empty variable placeholders for empty fields
 $student_number = $_SESSION['student_number'];
 $document_id = '';
+$purpose ='';
+$details ='';
 $upfile = '';
 $upfile_name = '';
 $request_date = '';
@@ -38,54 +40,81 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $request_status = 'PENDING';
   //apply validate script
   require_once "../../resource/opt1/validate.php";
-  //make sure that there are no errors
-  if(empty($errors)){
-    $upfiles = $_FILES['upfile'] ?? null;
-    $file_dir = '';
-    if ($upfiles){
-      
-      $file_dir = '../../resource/files/'.random_string(8);
-      // echo random_string(8);
-      // exit;
-      if (!is_dir($file_dir)){
-        mkdir($file_dir);
-      }
-      $name_arr = [];
-      $tmp_arr = [];
-      
-      foreach($upfiles['name'] as $key => $up_file) {
-        
-        $name_arr[$key] = $up_file;
-      }
-      foreach ($upfiles['tmp_name'] as $key => $up_file){
-        $tmp_arr[$key] = $up_file;
-        //echo $up_file;
-      }
-      // foreach($tmp_arr as $name){
-      //   echo $name;
-      // }
-      $upfile = $file_dir;
-      for($j = 0; $j < count($upfiles['name']); $j++){
-        move_uploaded_file($tmp_arr[$j], $file_dir.'/'.$name_arr[$j]);
-        $upfile_name .= $name_arr[$j]." ";
-      }
-      echo $upfile;
-    }
-    //prepare the query and the variable
-    $statement = $pdo->prepare("INSERT INTO document_request (student_number, document_id, request_date, request_status, upfile, upfile_name) VALUES (:student_number, :document_id, :request_date, :request_status, :upfile, :upfile_name)");
+
+  $statement = $pdo->prepare("SELECT * FROM document_request WHERE student_number = :student_number AND document_id = :document_id AND request_status IN ('RESUBMIT','PENDING','PROCESSING','RELEASE')");
     //bind values to placeholders
-    $statement->bindValue(':student_number', $student_number);
-    $statement->bindValue(':document_id', $document_id);
-    $statement->bindValue(':request_date', $request_date);
-    $statement->bindValue(':request_status', $request_status);
-    $statement->bindValue(':upfile', $upfile);
-    $statement->bindValue(':upfile_name', $upfile_name);
-    $statement->execute();
-    //go back to dashboard
-    header('Location: pending_request.php');
+  $statement->bindValue(':student_number', $student_number);
+  $statement->bindValue(':document_id', $document_id);
+  $records = $statement->fetchAll(PDO::FETCH_ASSOC);
+  $count = $statement->rowCount();
+  if($count > 0){
+      if(empty($errors)){
+      $upfiles = $_FILES['upfile'] ?? null;
+      $file_dir = '';
+      //check if the information is posting
+      // echo '<pre>';
+      // var_dump($_FILES);
+      // echo '</pre>';
+      //exit;
+      if ($upfiles){
+        $file_dir = '../../resource/files/'.random_string(8);
+        // echo random_string(8);
+        // exit;
+        if (!is_dir($file_dir)){
+          mkdir($file_dir);
+        }
+        $upfile = $file_dir;
+        if (count($upfiles['name']) > 1){
+          $name_arr = [];
+          $tmp_arr = [];
+          
+          foreach($upfiles['name'] as $key => $up_file) {
+            
+            $name_arr[$key] = $up_file;
+          }
+          foreach ($upfiles['tmp_name'] as $key => $up_file){
+            $tmp_arr[$key] = $up_file;
+            //echo $up_file;
+          }
+          // foreach($tmp_arr as $name){
+          //   echo $name;
+          // }
+          
+          for($j = 0; $j < count($upfiles['name']); $j++){
+            move_uploaded_file($tmp_arr[$j], $file_dir.'/'.$name_arr[$j]);
+            $upfile_name .= $name_arr[$j]." ";
+          }
+          //echo $upfile;
+          }
+          else{
+            $upfile_name = null;
+          }
+      }
+      
+      //prepare the query and the variable
+      $statement = $pdo->prepare("INSERT INTO document_request (student_number, document_id, purpose, details, request_date, request_status, upfile, upfile_name) VALUES (:student_number, :document_id, :purpose, :details, :request_date, :request_status, :upfile, :upfile_name)");
+      //bind values to placeholders
+      $statement->bindValue(':student_number', $student_number);
+      $statement->bindValue(':document_id', $document_id);
+      $statement->bindValue(':purpose', $purpose);
+      $statement->bindValue(':details', $details);
+      $statement->bindValue(':request_date', $request_date);
+      $statement->bindValue(':request_status', $request_status);
+      $statement->bindValue(':upfile', $upfile);
+      $statement->bindValue(':upfile_name', $upfile_name);
+      $statement->execute();
+      //go back to dashboard
+      header('Location: pending_request.php');
+    }
   }
+  else{
+    $errors[] = "A similar Document Request is still active";
+  }
+
+  
   
 }
+
 function random_string($n){
   $characters ='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
   $str = '';
@@ -112,8 +141,8 @@ require_once "../../resource/opt1/nav.php";
 <!-- contents -->
 <h1>NEW REQUEST</h1>
 <hr>
-  <h4>Instructions:</h4>
-  <p>Please select a document and attach files. Please attach image files and document files only.</p>
+  <h4>Reminders:</h4>
+  <p>Please select a document and attach files, if needed. Please attach image files and document files only. If want to request two (2) or more same documents with different details, please indicate in the "Details" field. Please indicate if you are RA11261 – “FIRST TIME JOBSEEKERS ASSISTANCE ACT” Beneficiary and attach Barangay Certification (First Time Jobseekers Act- RA 11261), and Oath of Undertaking</p>
   <hr>
   <h4>Requirements</h4>
   <table>
@@ -151,8 +180,17 @@ require_once "../../resource/opt1/nav.php";
         endforeach; ?> 
     </select>
     </div>
+    <div class="form-group">
+      <label>Purpose</label>
+      <input type="text" class="form-control" name ="purpose" placeholder="Enter Purpose" value="<?php echo $purpose ?>">
+    </div>
+    <div class="form-group">
+      <label>Details</label>
+      <textarea class="form-control" name = "details" placeholder="Enter Details and Indications"><?php echo $details ?></textarea>
+    </div>
     <label>File/s</label>
     <div>
+    
     <input type="file" name="upfile[]" id="upfile" class="btn btn btn-outline-dark btn-sm" multiple="multiple">
     
     </div>

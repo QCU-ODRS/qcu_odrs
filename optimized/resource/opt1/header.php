@@ -11,5 +11,5 @@
     </script>
     <?php
     $url1=$_SERVER['REQUEST_URI'];
-    header("Refresh: 60; URL=$url1");
+    header("Refresh: 300; URL=$url1");
 ?>

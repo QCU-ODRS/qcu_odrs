@@ -14,7 +14,7 @@ include_once "../../resource/opt2/header.php";
 $request_get = $_GET['request_number'];
 $release = NULL; 
 
-$statement = $pdo->prepare("SELECT document_request.request_number, document_request.request_date, student_info.student_number, student_info.full_name, student_info.course, student_info.year_of_enrollment, documents.document_name, documents.requirements, document_request.remarks, document_request.upfile, document_request.upfile_name, document_request.date_approved, document_request.date_released FROM document_request INNER JOIN student_info ON document_request.student_number = student_info.student_number JOIN documents ON document_request.document_id = documents.document_id WHERE document_request.request_number = :request_get");
+$statement = $pdo->prepare("SELECT document_request.request_number, document_request.request_date, student_info.student_number, student_info.full_name, student_info.course, student_info.year_of_enrollment, documents.document_name, documents.requirements, document_request.purpose, document_request.details, document_request.remarks, document_request.upfile, document_request.upfile_name, document_request.date_approved, document_request.date_released FROM document_request INNER JOIN student_info ON document_request.student_number = student_info.student_number JOIN documents ON document_request.document_id = documents.document_id WHERE document_request.request_number = :request_get");
 $statement->bindValue(':request_get', $request_get);
 $statement->execute();
 $requests = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -34,8 +34,10 @@ $requests = $statement->fetchAll(PDO::FETCH_ASSOC);
       <th scope="col">Full Name</th>
       <th scope="col">Course</th>
       <th scope="col">Year of Admission</th>
-      <th scope="col">Document</th>
+      <th scope="col">Document Name</th>
       <th scope="col">Requirements</th>
+      <th scope="col">Purpose</th>
+      <th scope="col">Details</th>
       <th scope="col">Remarks</th>
       <th scope="col">Attachments</th>
       <th scope="col">Date Approved</th>
@@ -52,6 +54,8 @@ $requests = $statement->fetchAll(PDO::FETCH_ASSOC);
         <td><?php echo $request['year_of_enrollment']?></td>
         <td><?php echo $request['document_name']?></td>
         <td><?php echo $request['requirements']?></td>
+        <td><?php echo $request['purpose']?></td>
+        <td><?php echo $request['details']?></td>
         <td>
             <?php
                 if($request['remarks'] == NULL){
