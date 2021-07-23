@@ -17,7 +17,7 @@ $request_status = '';
 
 //SQL database connection
 $conn = new mysqli('localhost','root', '', 'qcu_ords',3306);
-$sql ="SELECT document_name, document_id FROM documents ORDER BY document_id DESC";
+$sql ="SELECT document_name, document_id FROM documents ORDER BY document_name ASC";
 
 //fetching records from database
 $result = $conn->query($sql);

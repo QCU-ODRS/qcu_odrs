@@ -13,7 +13,7 @@ if($search) {
   $statement = $pdo->prepare('SELECT * FROM documents WHERE document_name LIKE :title ORDER BY document_id ASC');
   $statement->bindValue(':title', "%$search%");
 } else {
-  $statement = $pdo->prepare('SELECT * FROM documents ORDER BY document_id ASC');
+  $statement = $pdo->prepare('SELECT * FROM documents ORDER BY document_name ASC');
 }
 $statement->execute();
 $documents = $statement->fetchAll(PDO::FETCH_ASSOC);
