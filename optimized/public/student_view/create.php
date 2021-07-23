@@ -142,7 +142,7 @@ require_once "../../resource/opt1/nav.php";
 <h1>NEW REQUEST</h1>
 <hr>
   <h4>Reminders:</h4>
-  <p>Please select a document and attach files, if needed. Please attach image files and document files only. If want to request two (2) or more same documents with different details, please indicate in the "Details" field. Please indicate if you are RA11261 – “FIRST TIME JOBSEEKERS ASSISTANCE ACT” Beneficiary and attach Barangay Certification (First Time Jobseekers Act- RA 11261), and Oath of Undertaking</p>
+  <p>Please select a document and attach files, if needed. Please attach image files and document files only. If want to request two (2) or more same documents with different details, please indicate in the "Details" field. Please indicate if you are RA11261 – “FIRST TIME JOBSEEKERS ASSISTANCE ACT” Beneficiary and attach Barangay Certification (First Time Jobseekers Act- RA 11261), and Oath of Undertaking. For further clarification, you may also call 89368050 or 88063470 from 8:00 am to 5:00 pm, Monday to Friday (except Holidays).</p>
   <hr>
   <h4>Requirements</h4>
   <table>
