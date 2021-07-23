@@ -8,21 +8,22 @@
         </div>
     <?php endif ?>
 
-<form action="" method="post">
+<form action="" method="post" style="position: absolute; width: 1000px; height: 500px; left: 475px; top: 250px; bottom: 200px; filter: drop-shadow(10px 10px 2px rgba(0, 0, 0, 0.25)); background-color: #87CEEB;">
+    <h1 style="text-align: center; font-size: 65px; position: absolute; top: 15px; left: 57.5px;">REGISTER ACCOUNT</h1>    
     <label>Student Number</label>
     <div>
-    <input type="text" class="form-control" name="student_number" placeholder="Enter Student Number" value="<?php echo $student_number ?>">
+    <input type="text" class="form-control" style="position: absolute; width: 32.5%; left: 15px; top: 150px;" name="student_number" placeholder="Enter Student Number" value="<?php echo $student_number ?>">
     </div>
     <label>Password</label>
     <div>
-    <input type="password" class="form-control" name="acc_password" id="acc_pass" placeholder="Enter Password" value="<?php echo $acc_password ?>">
+    <input type="password" class="form-control" style="position: absolute; width: 32.5%; left: 15px; top: 150px;" name="acc_password" id="acc_pass" placeholder="Enter Password" value="<?php echo $acc_password ?>">
     </div>
     <div class="mb-3">
     <input type="checkbox" onclick="toggle_pass()">&nbsp;Show Password
     </div>
     <label>Confirm Password</label>
     <div>
-    <input type="password" class="form-control" name="confirm_pass" placeholder="Confirm Password" value="<?php echo $confirm_pass ?>">
+    <input type="password" class="form-control" style="position: absolute; width: 32.5%; left: 15px; top: 150px;" name="confirm_pass" placeholder="Confirm Password" value="<?php echo $confirm_pass ?>">
     </div>
     
     <label>Last Name</label>
@@ -61,6 +62,6 @@
 
     <br />
     
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary" style="position: absolute; left: 475px; bottom: 10px;">Submit</button>
     
 </form>
