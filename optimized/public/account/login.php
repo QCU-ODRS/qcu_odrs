@@ -85,7 +85,7 @@
 <body>
     
     
-<h1>LOGIN</h1>
+<!-- <h1 style="position: absolute; top: 275px; left: 750px;">LOGIN</h1> -->
 <?php
     require_once "../../resource/login/form.php";
 
