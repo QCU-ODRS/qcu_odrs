@@ -8,13 +8,13 @@ html, body {
 }
 
 nav>button>span:hover{
-    background-color: yellow;
+    background-color: #F1E2E2;
     opacity: 0.25;
 }
 
 li>a:hover {
-    background-color: yellow;
-    color: whitesmoke;
+    background-color: #F1E2E2;
+    color: #161518;
     opacity: 0.25;
 }
 
