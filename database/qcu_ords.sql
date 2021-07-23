@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 22, 2021 at 09:32 PM
+-- Generation Time: Jul 23, 2021 at 05:02 AM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 7.4.20
 
@@ -38,11 +38,12 @@ CREATE TABLE `documents` (
 --
 
 INSERT INTO `documents` (`document_id`, `document_name`, `requirements`) VALUES
-(13, 'TOR / Diploma', 'Year Graduated and complete address '),
+(13, 'Diploma', 'Year Graduated and complete address '),
 (14, 'TOR (Under Graduate)', 'Last Academic Year Attended and complete address'),
 (15, 'Grade Slip', 'Academic Year and Semester'),
 (16, 'Other Certifications', 'Office requesting the document (e.g., DSWD, CHED)'),
-(17, 'Authentication / Certified True Copy', 'Send a clear copy of the document and bring the Original Copy upon claiming');
+(17, 'Authentication / Certified True Copy', 'Send a clear copy of the document and bring the Original Copy upon claiming'),
+(18, 'TOR (Graduate)', 'Year Graduated and complete address ');
 
 -- --------------------------------------------------------
 
@@ -54,6 +55,8 @@ CREATE TABLE `document_request` (
   `request_number` int(12) NOT NULL,
   `student_number` varchar(10) NOT NULL,
   `document_id` int(10) NOT NULL,
+  `purpose` varchar(64) NOT NULL,
+  `details` text DEFAULT NULL,
   `request_date` date NOT NULL,
   `request_status` varchar(20) NOT NULL,
   `remarks` longtext DEFAULT NULL,
@@ -63,6 +66,13 @@ CREATE TABLE `document_request` (
   `date_released` date DEFAULT NULL,
   `date_finished` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `document_request`
+--
+
+INSERT INTO `document_request` (`request_number`, `student_number`, `document_id`, `purpose`, `details`, `request_date`, `request_status`, `remarks`, `upfile`, `upfile_name`, `date_approved`, `date_released`, `date_finished`) VALUES
+(43, '18-0855', 15, 'Personal Copy', '2020-2021 1st sem', '2021-07-23', 'PENDING', NULL, '../../resource/files/Jy9VDTrv', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -86,12 +96,6 @@ CREATE TABLE `student_info` (
 --
 
 INSERT INTO `student_info` (`student_number`, `last_name`, `first_name`, `middle_name`, `full_name`, `course`, `year_of_enrollment`, `email`) VALUES
-('-1228', 'Ababa', 'John Paul', 'Casano', 'Ababa, John Paul Casano', 'BSIT', '2020', 'johnpaulababa0925@gmail.com'),
-('-1245', 'Eballes', 'Marlon', 'Union', 'Eballes, Marlon Union', 'BSIT', '2019', 'marlon.union.eballes@gmail.com'),
-('-1250', 'Bacalso', 'Wayne Kenneth', '', 'Bacalso, Wayne Kenneth', 'BSIT', '2016', 'waynekenneth.bacalso03@gmail.com'),
-('-1267', 'Fesariton', 'John Kennet', 'Capablanca', 'Fesariton, John Kenneth Capablanca', 'BSIT', '2019', 'john.kenneth.fesariton@gmail.com'),
-('-1271', 'Cabarles', 'Kenbryan', 'Agabin', 'Cabarles, Kenbryan Agabin', 'BSIT', '2017', 'Kenbryan.agabin.cabarles@gmail.com'),
-('-1283', 'Cabarrubias', 'Jonathan', 'Alegado', 'Cabarrubias, Jonathan Alegado', 'BSIT', '2020', 'cabarrubiasjonathan25@gmail.com'),
 ('16-0021', 'Cafe', 'Rhodney', 'Alipio', 'Cafe, Rhodney Alipio', 'BSIT', '2016', 'rhodney.alipio.cafe@gmail.com'),
 ('16-0243', 'Bacabis', 'Mark Melvin', 'Estrera', 'Bacabis, Mark Melvin', 'BSIT', '2016', 'mark.melvin.bacabis@gmail.com'),
 ('17-1288', 'Cabarles', 'Kenbryan', 'Agabin', 'Cabarles, Kenbryan Agabin', 'BSIT', '2017', 'Kenbryan.agabin.cabarles@gmail.com'),
@@ -155,13 +159,13 @@ ALTER TABLE `student_info`
 -- AUTO_INCREMENT for table `documents`
 --
 ALTER TABLE `documents`
-  MODIFY `document_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `document_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `document_request`
 --
 ALTER TABLE `document_request`
-  MODIFY `request_number` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `request_number` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
