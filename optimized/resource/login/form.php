@@ -8,7 +8,7 @@
         </div>
     <?php endif ?>
 <form action="" method="post" style="position: absolute; width: 300px; height: 425px; left: 850px; top: 275px; bottom: 200px; filter: drop-shadow(10px 10px 2px rgba(0, 0, 0, 0.25)); background-color: #87CEEB;">
-  <h1 style="text-align: center; font-size: 65px; position: absolute; top: 15px; left: 55px;">LOGIN</h1>
+  <h1 style="text-align: center; font-size: 65px; position: absolute; top: 15px; left: 57.5px;">LOGIN</h1>
   <div class="mb-3">
     <label class="form-label" style="position: absolute; left: 20px; top: 120px;">Student Number</label>
     <input type="text" class="form-control" name="student_number" style="position: absolute; width: 90%; left: 15px; top: 150px;">
