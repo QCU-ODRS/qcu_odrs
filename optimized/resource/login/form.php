@@ -19,10 +19,10 @@
     <input type="password" class="form-control" name="acc_pass" id="acc_pass" style="position: absolute; width: 90%; left: 15px; top: 240px;">
   </div>
   <div class="mb-3">
-    <input type="checkbox" onclick="toggle_pass()" style="position: absolute; left: 20px; bottom: 110px;">&nbsp;
-    <label for="form-label" style="position: absolute; left: 40px; bottom: 105px;">Show Password</label>
+    <input type="checkbox" onclick="toggle_pass()" style="position: absolute; left: 20px; bottom: 120px;">&nbsp;
+    <label for="form-label" style="position: absolute; left: 40px; bottom: 115px;">Show Password</label>
   </div>
   <button type="submit" class="btn btn-primary" name="login" style="position: absolute; width: 125px; left: 90px; bottom: 20px;">Submit</button>
-  <a href="register.php" style="position: absolute; width: 125px; left: 225px; top: 210px; color: black;">Register</a>
+  <a href="register.php" style="position: absolute; width: 125px; left: 225px; top: 210px; color: purple; text-decoration: none;">Register</a>
 </form>
 <br>
