@@ -105,7 +105,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Register</title>
   </head>
   <body>
-<h1>REGISTER ACCOUNT</h1>
 
 <?php
     include "../../resource/register_form/form.php";
