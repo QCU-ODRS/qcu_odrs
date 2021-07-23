@@ -14,8 +14,8 @@ nav>button>span:hover{
 
 li>a:hover {
     background-color: #9c212d;
-    fill-opacity: 0.5;
     color: #000000;
+    opacity: 0.25;
 }
 
 table {
