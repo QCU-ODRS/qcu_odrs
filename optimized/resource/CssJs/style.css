@@ -8,14 +8,14 @@ html, body {
 }
 
 nav>button>span:hover{
-    background-color: yellow;
-    opacity: 0.25;
+    background-color: #9c212d;
+    color: #000000;
 }
 
 li>a:hover {
-    background-color: yellow;
-    color: whitesmoke;
-    opacity: 0.25;
+    background-color: #9c212d;
+    fill-opacity: 0.5;
+    color: #000000;
 }
 
 table {
