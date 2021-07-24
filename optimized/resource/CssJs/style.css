@@ -15,10 +15,10 @@ nav>button>span:hover{
 li>a:hover {
     background-color: #9c212d;
     color: #000000;
-    opacity: 0.25;
+    opacity: 0.50;
 }
 
-table {
+table.table {
     position: absolute;
     width: 1825px;
     height: 579px;
