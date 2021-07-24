@@ -18,7 +18,7 @@ li>a:hover {
     opacity: 0.50;
 }
 
-table.table {
+.table {
     position: absolute;
     width: 1825px;
     height: 579px;
