@@ -55,7 +55,7 @@ $documents = $statement->fetchAll(PDO::FETCH_ASSOC);
 <!-- table view -->
 </form>
 <!-- <table class="table" > -->
-<table>
+<table class = "table">
   <thead class="table-dark">
     <tr class="bg-dark" style="color: white;">
       <th scope="col">#</th>

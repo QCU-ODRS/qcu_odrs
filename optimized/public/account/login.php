@@ -83,7 +83,7 @@
      <title>QCU ODRS</title>
   </head>
 <body>
-    
+<div class = "bg"></div>
     
 <!-- <h1 style="position: absolute; top: 275px; left: 750px;">LOGIN</h1> -->
 <?php

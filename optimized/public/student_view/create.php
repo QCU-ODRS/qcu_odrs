@@ -1,7 +1,8 @@
 <?php
 //Student Creates Requests with validation of 1
 session_start();
-
+//refer header
+require_once "../../resource/opt1/header.php";
 
 //error array for blank fields validation
 $errors = [];
@@ -31,23 +32,40 @@ require_once "../../resource/opt1/database.php";
 // echo '<pre>';
 // var_dump($_POST);
 // echo '</pre>';
-
+// exit;
 //make sure that the request method is 'post'
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   //empty variable placeholders for empty fields
-  $document_id = $_POST['document_id'];
+  
+  //apply validate script
+  include_once "../../resource/opt1/validate.php";
+  $document_id = intval($_POST['document_id']);
   $request_date = date('Y-m-d');
   $request_status = 'PENDING';
-  //apply validate script
-  require_once "../../resource/opt1/validate.php";
-
-  $statement = $pdo->prepare("SELECT * FROM document_request WHERE student_number = :student_number AND document_id = :document_id AND request_status IN ('RESUBMIT','PENDING','PROCESSING','RELEASE')");
-    //bind values to placeholders
-  $statement->bindValue(':student_number', $student_number);
-  $statement->bindValue(':document_id', $document_id);
-  $records = $statement->fetchAll(PDO::FETCH_ASSOC);
-  $count = $statement->rowCount();
-  if($count > 0){
+  if(empty($errors)){
+    $statement = $pdo->prepare("SELECT * FROM document_request WHERE (student_number = :student_number AND document_id = :document_id) AND request_status IN ('RESUBMIT','PENDING','PROCESSING','RELEASE')");
+        //bind values to placeholders
+      $statement->bindValue(':student_number', $student_number);
+      $statement->bindValue(':document_id', $document_id);
+      $statement->execute();
+      $records = $statement->fetchAll(PDO::FETCH_ASSOC);
+      $count = $statement->rowCount();
+      // echo '<pre>';
+      // var_dump($records);
+      // var_dump($count);
+      // var_dump($student_number);
+      // var_dump($document_id);
+      // echo '</pre>';
+      // exit;
+      if($count > 0){
+        $errors[] = "A similar Document Request is still active";
+      }
+    
+  }
+  // echo '<pre>';
+  //     var_dump($records);
+  //     echo '</pre>';
+  //     exit;
       if(empty($errors)){
       $upfiles = $_FILES['upfile'] ?? null;
       $file_dir = '';
@@ -106,10 +124,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       //go back to dashboard
       header('Location: pending_request.php');
     }
-  }
-  else{
-    $errors[] = "A similar Document Request is still active";
-  }
+
 
   
   
@@ -124,8 +139,7 @@ function random_string($n){
   }
   return $str;
 }
-//refer header
-require_once "../../resource/opt1/header.php";
+
 
 
 ?>
@@ -143,7 +157,7 @@ require_once "../../resource/opt1/nav.php";
 <hr>
   <h4>Reminders:</h4>
   <p>Please select a document and attach files, if needed. Please attach image files and document files only. If want to request two (2) or more same documents with different details, please indicate in the "Details" field. Please indicate if you are RA11261 – “FIRST TIME JOBSEEKERS ASSISTANCE ACT” Beneficiary and attach Barangay Certification (First Time Jobseekers Act- RA 11261), and Oath of Undertaking. For further clarification, you may also call 89368050 or 88063470 from 8:00 am to 5:00 pm, Monday to Friday (except Holidays).</p>
-  <hr>
+<hr>
   <h4>Requirements</h4>
   <table class="normal">
     <tr>

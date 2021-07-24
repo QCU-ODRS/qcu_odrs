@@ -6,7 +6,7 @@
                 </div>
             <?php endforeach?>
         </div>
-    <?php endif; ?>
+<?php endif; ?>
 
   <form action="" method="post" enctype="multipart/form-data"> 
     <div class="form-group">
@@ -14,6 +14,7 @@
       <input type="text" class="form-control" placeholder="Enter Student Number" value="<?php echo $student_number ?>" disabled>
     </div>
     <label>Document Name</label>
+    <div>
     <select class="form-select" aria-label="Default select example" name="document_id" onchange="change_value()">
     
       <option selected value = "default">--Select One--</option>

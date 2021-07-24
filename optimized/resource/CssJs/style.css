@@ -1,7 +1,16 @@
-html, body {
-    background-color: #F7F7FF;
+body {
+    height: 100%;
+     
+     
 }
-
+div.bg {
+    background-image:  url("https://media.discordapp.net/attachments/716260654289256458/814006666420158504/arknights-chen-anime-girl-uhdpaper.com-4K-6.494-wp.thumbnail.jpg");
+    
+    filter: blur(15px);
+     -webkit-filter: blur(50px);
+    height: 100%;
+    background-size: cover;
+}
 .navbar-color {
     background-color: #000068;
     color:#f2f1ef;
@@ -15,7 +24,7 @@ nav>button>span:hover{
 li>a:hover {
     background-color: #9c212d;
     color: #000000;
-    opacity: 0.50;
+    opacity: 0.75;
 }
 
 .table {
