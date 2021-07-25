@@ -10,11 +10,11 @@ session_start();
 $student_number = $_SESSION['student_number'];
 $search = $_GET['search'] ?? '';
 if($search) {
-  $statement = $pdo->prepare("SELECT document_request.request_number, document_request.request_date, student_info.student_number, student_info.last_name, documents.document_names FROM document_request INNER JOIN student_info ON document_request.student_number = student_info.student_number JOIN documents ON document_request.document_id = documents.document_id WHERE (documents.document_name LIKE :document_name) AND document_request.request_status LIKE 'PENDING' ORDER BY document_request.request_number DESC");
+  $statement = $pdo->prepare("SELECT document_request.request_number, document_request.request_date, student_info.student_number, student_info.last_name, documents.document_names FROM document_request INNER JOIN student_info ON document_request.student_number = student_info.student_number JOIN documents ON document_request.document_id = documents.document_id WHERE (documents.document_name LIKE :document_name) AND document_request.request_status LIKE 'PENDING' AND document_request.student_number = :student_number ORDER BY document_request.request_number DESC");
   $statement->bindValue(':document_name', "%$search%");
   $statement->bindValue(':student_number', $student_number);
 } else {
-  $statement = $pdo->prepare("SELECT document_request.request_number, document_request.request_date, student_info.student_number, student_info.last_name,  documents.document_name FROM document_request INNER JOIN student_info ON document_request.student_number = student_info.student_number JOIN documents ON document_request.document_id = documents.document_id WHERE document_request.request_status LIKE 'PENDING' ORDER BY document_request.request_number DESC");
+  $statement = $pdo->prepare("SELECT document_request.request_number, document_request.request_date, student_info.student_number, student_info.last_name,  documents.document_name FROM document_request INNER JOIN student_info ON document_request.student_number = student_info.student_number JOIN documents ON document_request.document_id = documents.document_id WHERE document_request.request_status LIKE 'PENDING' AND document_request.student_number = :student_number ORDER BY document_request.request_number DESC");
   $statement->bindValue(':student_number', $student_number);
 }
 $statement->execute();
