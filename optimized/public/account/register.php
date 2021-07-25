@@ -71,7 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             $statement->bindValue(':date_created', $date_created);
                             $statement->execute();
                             //go back to dashboard
-                            header('Location: login.php');
+                            header('Location: ../../../index.php');
                         }
                     }
                     else
