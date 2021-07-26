@@ -1,5 +1,5 @@
 <?php
-    require_once "../../resource/opt/database.php";
+    require_once "../../resource/opt1/database.php";
 
 
     $errors = [];
@@ -98,7 +98,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 //make sure that there are no errors
     
 
-    require_once "../../resource/opt/header.php";
+    require_once "../../resource/opt1/header.php";
 
 
 ?>
