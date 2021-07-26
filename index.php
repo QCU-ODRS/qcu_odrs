@@ -52,11 +52,11 @@
                                 $_SESSION["student_number"] = $_POST["student_number"];
                                 $_SESSION['user'] = $log['full_name'];
                                 if($status == 'student'){
-                                    header("location:../student_view/student_dashboard.php");
+                                    header("location:optimized/public/student_view/student_dashboard.php");
                                     die();
                                 }
                                 elseif($status == 'not_student'){
-                                    header("location:../registrar_view/dashboard.php");
+                                    header("location:optimized/public/registrar_view/dashboard.php");
                                     die();
                                 }
                             }

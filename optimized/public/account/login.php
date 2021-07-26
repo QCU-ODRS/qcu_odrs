@@ -2,7 +2,7 @@
     session_start();  
     $host = "localhost";  
     $username = "root";  
-    $password = "";  
+    $password = "xd4BgGSjYH3aws";  
     $database = "qcu_ords";  
     $message = "";  
     $status = 'student';
