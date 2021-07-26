@@ -1,9 +1,9 @@
 <?php
     session_start();  
-    $host = "localhost";  
-    $username = "root";  
-    $password = "";  
-    $database = "qcu_ords";  
+    $host = "sql303.epizy.com";  
+    $username = "epiz_29233774";  
+    $password = "xd4BgGSjYH3aws";  
+    $database = "epiz_29233774_qcu_odrs";  
     $message = "";  
     $status = 'student';
 

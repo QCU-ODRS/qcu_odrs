@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 23, 2021 at 05:02 AM
+-- Generation Time: Jul 25, 2021 at 05:01 PM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 7.4.20
 
@@ -72,7 +72,17 @@ CREATE TABLE `document_request` (
 --
 
 INSERT INTO `document_request` (`request_number`, `student_number`, `document_id`, `purpose`, `details`, `request_date`, `request_status`, `remarks`, `upfile`, `upfile_name`, `date_approved`, `date_released`, `date_finished`) VALUES
-(43, '18-0855', 15, 'Personal Copy', '2020-2021 1st sem', '2021-07-23', 'PENDING', NULL, '../../resource/files/Jy9VDTrv', NULL, NULL, NULL, NULL);
+(43, '18-0855', 15, 'Personal Copy', '2020-2021 1st sem', '2021-07-23', 'FINISHED', NULL, '../../resource/files/Jy9VDTrv', NULL, '2021-07-23', '2021-07-24', '2021-07-24'),
+(44, '18-0855', 18, 'Scholarship', '', '2021-07-24', 'PENDING', NULL, '../../resource/files/wHxsfrZ2', NULL, NULL, NULL, NULL),
+(45, '18-0855', 17, 'Scholarship', '', '2021-07-24', 'PENDING', NULL, '../../resource/files/TaLdYmcy', NULL, NULL, NULL, NULL),
+(46, '18-0855', 17, 'asas', '', '2021-07-24', 'PENDING', NULL, '../../resource/files/KDWsgIMz', NULL, NULL, NULL, NULL),
+(47, '18-0855', 17, 'sdxcv', '', '2021-07-24', 'PENDING', NULL, '../../resource/files/FjQmjp8X', NULL, NULL, NULL, NULL),
+(48, '18-0855', 17, 'adsfgbn', '', '2021-07-24', 'PENDING', NULL, '../../resource/files/M4BxNajg', NULL, NULL, NULL, NULL),
+(49, '18-0855', 17, 'SADFG', '', '2021-07-24', 'PENDING', NULL, '../../resource/files/uXouAt0c', NULL, NULL, NULL, NULL),
+(50, '18-0855', 17, 'DFGHJKL', '', '2021-07-24', 'PENDING', NULL, '../../resource/files/uPAkStK0', NULL, NULL, NULL, NULL),
+(51, '18-0855', 17, 'SADFGHJM', '', '2021-07-24', 'PENDING', NULL, '../../resource/files/WLdJqn7Q', NULL, NULL, NULL, NULL),
+(52, '18-0855', 17, 'SADF', '', '2021-07-24', 'PENDING', NULL, '../../resource/files/icMiE1oI', NULL, NULL, NULL, NULL),
+(53, '18-0855', 16, 'sdfghj', '', '2021-07-24', 'PENDING', NULL, '../../resource/files/GSJjhJhR', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -165,7 +175,7 @@ ALTER TABLE `documents`
 -- AUTO_INCREMENT for table `document_request`
 --
 ALTER TABLE `document_request`
-  MODIFY `request_number` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `request_number` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
